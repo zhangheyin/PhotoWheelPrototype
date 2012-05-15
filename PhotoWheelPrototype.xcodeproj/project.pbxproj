@@ -1,0 +1,301 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		79BEF4301562761A000039F8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79BEF42F1562761A000039F8 /* UIKit.framework */; };
+		79BEF4321562761A000039F8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79BEF4311562761A000039F8 /* Foundation.framework */; };
+		79BEF4341562761A000039F8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79BEF4331562761A000039F8 /* CoreGraphics.framework */; };
+		79BEF43A1562761A000039F8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 79BEF4381562761A000039F8 /* InfoPlist.strings */; };
+		79BEF43C1562761A000039F8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BEF43B1562761A000039F8 /* main.m */; };
+		79BEF4401562761A000039F8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BEF43F1562761A000039F8 /* AppDelegate.m */; };
+		79BEF4431562761A000039F8 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BEF4421562761A000039F8 /* MasterViewController.m */; };
+		79BEF4461562761A000039F8 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BEF4451562761A000039F8 /* DetailViewController.m */; };
+		79BEF4491562761A000039F8 /* MasterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79BEF4471562761A000039F8 /* MasterViewController.xib */; };
+		79BEF44C1562761A000039F8 /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79BEF44A1562761A000039F8 /* DetailViewController.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		79BEF42B1562761A000039F8 /* PhotoWheelPrototype.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoWheelPrototype.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		79BEF42F1562761A000039F8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		79BEF4311562761A000039F8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		79BEF4331562761A000039F8 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		79BEF4371562761A000039F8 /* PhotoWheelPrototype-Info.plist */ = {isa = PBXFileReference; path = "PhotoWheelPrototype-Info.plist"; sourceTree = "<group>"; };
+		79BEF4391562761A000039F8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		79BEF43B1562761A000039F8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		79BEF43D1562761A000039F8 /* PhotoWheelPrototype-Prefix.pch */ = {isa = PBXFileReference; path = "PhotoWheelPrototype-Prefix.pch"; sourceTree = "<group>"; };
+		79BEF43E1562761A000039F8 /* AppDelegate.h */ = {isa = PBXFileReference; path = AppDelegate.h; sourceTree = "<group>"; };
+		79BEF43F1562761A000039F8 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		79BEF4411562761A000039F8 /* MasterViewController.h */ = {isa = PBXFileReference; path = MasterViewController.h; sourceTree = "<group>"; };
+		79BEF4421562761A000039F8 /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
+		79BEF4441562761A000039F8 /* DetailViewController.h */ = {isa = PBXFileReference; path = DetailViewController.h; sourceTree = "<group>"; };
+		79BEF4451562761A000039F8 /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		79BEF4481562761A000039F8 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MasterViewController.xib; sourceTree = "<group>"; };
+		79BEF44B1562761A000039F8 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/DetailViewController.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		79BEF4281562761A000039F8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				79BEF4301562761A000039F8 /* UIKit.framework in Frameworks */,
+				79BEF4321562761A000039F8 /* Foundation.framework in Frameworks */,
+				79BEF4341562761A000039F8 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		79BEF42015627619000039F8 = {
+			isa = PBXGroup;
+			children = (
+				79BEF4351562761A000039F8 /* PhotoWheelPrototype */,
+				79BEF42E1562761A000039F8 /* Frameworks */,
+				79BEF42C1562761A000039F8 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		79BEF42C1562761A000039F8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				79BEF42B1562761A000039F8 /* PhotoWheelPrototype.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		79BEF42E1562761A000039F8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				79BEF42F1562761A000039F8 /* UIKit.framework */,
+				79BEF4311562761A000039F8 /* Foundation.framework */,
+				79BEF4331562761A000039F8 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		79BEF4351562761A000039F8 /* PhotoWheelPrototype */ = {
+			isa = PBXGroup;
+			children = (
+				79BEF43E1562761A000039F8 /* AppDelegate.h */,
+				79BEF43F1562761A000039F8 /* AppDelegate.m */,
+				79BEF4411562761A000039F8 /* MasterViewController.h */,
+				79BEF4421562761A000039F8 /* MasterViewController.m */,
+				79BEF4441562761A000039F8 /* DetailViewController.h */,
+				79BEF4451562761A000039F8 /* DetailViewController.m */,
+				79BEF4471562761A000039F8 /* MasterViewController.xib */,
+				79BEF44A1562761A000039F8 /* DetailViewController.xib */,
+				79BEF4361562761A000039F8 /* Supporting Files */,
+			);
+			path = PhotoWheelPrototype;
+			sourceTree = "<group>";
+		};
+		79BEF4361562761A000039F8 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				79BEF4371562761A000039F8 /* PhotoWheelPrototype-Info.plist */,
+				79BEF4381562761A000039F8 /* InfoPlist.strings */,
+				79BEF43B1562761A000039F8 /* main.m */,
+				79BEF43D1562761A000039F8 /* PhotoWheelPrototype-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		79BEF42A1562761A000039F8 /* PhotoWheelPrototype */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 79BEF44F1562761A000039F8 /* Build configuration list for PBXNativeTarget "PhotoWheelPrototype" */;
+			buildPhases = (
+				79BEF4271562761A000039F8 /* Sources */,
+				79BEF4281562761A000039F8 /* Frameworks */,
+				79BEF4291562761A000039F8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PhotoWheelPrototype;
+			productName = PhotoWheelPrototype;
+			productReference = 79BEF42B1562761A000039F8 /* PhotoWheelPrototype.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		79BEF42215627619000039F8 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = 79BEF42515627619000039F8 /* Build configuration list for PBXProject "PhotoWheelPrototype" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 79BEF42015627619000039F8;
+			productRefGroup = 79BEF42C1562761A000039F8 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				79BEF42A1562761A000039F8 /* PhotoWheelPrototype */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		79BEF4291562761A000039F8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				79BEF43A1562761A000039F8 /* InfoPlist.strings in Resources */,
+				79BEF4491562761A000039F8 /* MasterViewController.xib in Resources */,
+				79BEF44C1562761A000039F8 /* DetailViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		79BEF4271562761A000039F8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				79BEF43C1562761A000039F8 /* main.m in Sources */,
+				79BEF4401562761A000039F8 /* AppDelegate.m in Sources */,
+				79BEF4431562761A000039F8 /* MasterViewController.m in Sources */,
+				79BEF4461562761A000039F8 /* DetailViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		79BEF4381562761A000039F8 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				79BEF4391562761A000039F8 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		79BEF4471562761A000039F8 /* MasterViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				79BEF4481562761A000039F8 /* en */,
+			);
+			name = MasterViewController.xib;
+			sourceTree = "<group>";
+		};
+		79BEF44A1562761A000039F8 /* DetailViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				79BEF44B1562761A000039F8 /* en */,
+			);
+			name = DetailViewController.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		79BEF44D1562761A000039F8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		79BEF44E1562761A000039F8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		79BEF4501562761A000039F8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PhotoWheelPrototype/PhotoWheelPrototype-Prefix.pch";
+				INFOPLIST_FILE = "PhotoWheelPrototype/PhotoWheelPrototype-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		79BEF4511562761A000039F8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PhotoWheelPrototype/PhotoWheelPrototype-Prefix.pch";
+				INFOPLIST_FILE = "PhotoWheelPrototype/PhotoWheelPrototype-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		79BEF42515627619000039F8 /* Build configuration list for PBXProject "PhotoWheelPrototype" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				79BEF44D1562761A000039F8 /* Debug */,
+				79BEF44E1562761A000039F8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		79BEF44F1562761A000039F8 /* Build configuration list for PBXNativeTarget "PhotoWheelPrototype" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				79BEF4501562761A000039F8 /* Debug */,
+				79BEF4511562761A000039F8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 79BEF42215627619000039F8 /* Project object */;
+}
