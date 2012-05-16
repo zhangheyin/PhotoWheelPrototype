@@ -49,7 +49,9 @@
                     initWithBarButtonSystemItem:UIBarButtonSystemItemAdd 
                                         target:self 
                                 action:@selector(add:)];
+	/*ADD--- FOR addButton ---ADD*/
     [[self navigationItem] setRightBarButtonItem:addButton];
+	/*ADD--- FOR editButtonItem ---ADD*/
     [[self navigationItem] setLeftBarButtonItem:[self editButtonItem]];
 
 }
