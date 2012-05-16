@@ -13,7 +13,8 @@
 @implementation MasterViewController
 
 @synthesize detailViewController = _detailViewController;
-
+/*ADD--- FOR DATA ---ADD*/
+@synthesize data = _data;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -37,9 +38,49 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    self.title = NSLocalizedString(@"Photo Albums", @"Photo albums title");
+    [self setData:[[NSMutableOrderedSet alloc] init]];
+    [[self data] addObject:@"A Sample Photo Album"];
+    [[self data] addObject:@"Another Photo Album"];
+    
     [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionMiddle];
+    
+    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] 
+                    initWithBarButtonSystemItem:UIBarButtonSystemItemAdd 
+                                        target:self 
+                                action:@selector(add:)];
+    [[self navigationItem] setRightBarButtonItem:addButton];
+    [[self navigationItem] setLeftBarButtonItem:[self editButtonItem]];
+
+}
+- (void)add:(id)sender
+{
+    NSLog(@"%s", __PRETTY_FUNCTION__);
+    NameEditorViewController *newController = [[NameEditorViewController alloc] initWithDefaultNib];
+    [newController setDelegate:self];
+    [newController setModalPresentationStyle:UIModalPresentationFormSheet];
+    [self presentModalViewController:newController animated:YES];
+    
 }
 
+-(void) nameEditorViewControllerDidFinish:(NameEditorViewController *)controller
+{
+    NSLog(@"%s", __PRETTY_FUNCTION__);
+    NSString *newName = [[controller nameTextField] text];
+    if (newName && [newName length] > 0) {
+        if ([controller isEditing]) {
+            [[self data] replaceObjectAtIndex:[[controller indexPath] row] withObject:newName];
+        } else {
+            [[self data] addObject:newName];
+        }
+        [[self tableView] reloadData];
+    } 
+}
+
+-(void) nameEditorViewControllerDidCancel:(NameEditorViewController *)controller
+{
+    NSLog(@"%s", __PRETTY_FUNCTION__);
+}
 - (void)viewDidUnload
 {
     [super viewDidUnload];
@@ -81,7 +122,8 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
+    NSInteger num = [self.data count];
+    return num;
 }
 
 // Customize the appearance of table view cells.
@@ -92,41 +134,66 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        // Display the detail disclosure buton when the table is
+        // in edit mode. This is the line you must add:
+        [cell setEditingAccessoryType:UITableViewCellAccessoryDetailDisclosureButton];
+        [cell setShowsReorderControl:YES];
     }
 
     // Configure the cell.
-    cell.textLabel.text = NSLocalizedString(@"Detail", @"Detail");
+    /*ADD---  ---ADD*/
+    cell.textLabel.text = [self.data objectAtIndex:[indexPath row]];
+
     return cell;
 }
+- (void) tableView:(UITableView *)tableView 
+accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
+{
+    NameEditorViewController *newController = [[NameEditorViewController alloc] initWithDefaultNib];
+    [newController setDelegate:self];
+    [newController setEditing:YES];
+    [newController setIndexPath:indexPath];
+    NSString *name = [[self data] objectAtIndex:[indexPath row]];
+    //Replace [[newController nameTextField] setText:name];
+    [newController setDefaultNameText:name];
+    [newController setModalPresentationStyle:UIModalPresentationFormSheet];
+    [self presentModalViewController:newController animated:YES];
+    
+}
 
-/*
+
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the specified item to be editable.
     return YES;
 }
-*/
 
-/*
+
+
 // Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)tableView 
+commitEditingStyle:(UITableViewCellEditingStyle)editingStyle 
+forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source.
+        [[self data] removeObjectAtIndex:[indexPath row]];
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
-    }   
+    }
 }
-*/
 
-/*
+
+
 // Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
+- (void)tableView:(UITableView *)tableView 
+moveRowAtIndexPath:(NSIndexPath *)fromIndexPath 
+      toIndexPath:(NSIndexPath *)toIndexPath
 {
+    [[self data] exchangeObjectAtIndex:[fromIndexPath row] 
+                     withObjectAtIndex:[toIndexPath row]];
 }
-*/
+
 
 /*
 // Override to support conditional rearranging of the table view.
@@ -139,10 +206,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (!self.detailViewController) {
-        self.detailViewController = [[DetailViewController alloc] initWithNibName:@"DetailViewController" bundle:nil];
-    }
-    [self.navigationController pushViewController:self.detailViewController animated:YES];
+    NSString *name = [[self data] objectAtIndex:[indexPath row]];
+    [[self detailViewController] setDetailItem:name];
 }
 
 @end
