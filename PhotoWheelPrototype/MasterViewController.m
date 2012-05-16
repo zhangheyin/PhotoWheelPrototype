@@ -42,7 +42,10 @@
     [[self data] addObject:@"A Sample Photo Album"];
     [[self data] addObject:@"Another Photo Album"];
     
-    [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionMiddle];
+    [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 
+                                                            inSection:0] 
+                                animated:NO 
+                          scrollPosition:UITableViewScrollPositionMiddle];
     
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] 
                     initWithBarButtonSystemItem:UIBarButtonSystemItemAdd 
@@ -70,7 +73,8 @@
     NSString *newName = [[controller nameTextField] text];
     if (newName && [newName length] > 0) {
         if ([controller isEditing]) {
-            [[self data] replaceObjectAtIndex:[[controller indexPath] row] withObject:newName];
+            [[self data] replaceObjectAtIndex:[[controller indexPath] row] 
+                                   withObject:newName];
         } else {
             [[self data] addObject:newName];
         }
@@ -165,7 +169,7 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
+                {
     // Return NO if you do not want the specified item to be editable.
     return YES;
 }
@@ -173,6 +177,7 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 
 
 // Override to support editing the table view.
+//确定删除表格中的某一行
 - (void)tableView:(UITableView *)tableView 
 commitEditingStyle:(UITableViewCellEditingStyle)editingStyle 
 forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -180,7 +185,8 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source.
         [[self data] removeObjectAtIndex:[indexPath row]];
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] 
+                         withRowAnimation:UITableViewRowAnimationFade];
     }
 }
 
@@ -205,7 +211,8 @@ moveRowAtIndexPath:(NSIndexPath *)fromIndexPath
 }
 */
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)tableView 
+didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *name = [[self data] objectAtIndex:[indexPath row]];
     [[self detailViewController] setDetailItem:name];
