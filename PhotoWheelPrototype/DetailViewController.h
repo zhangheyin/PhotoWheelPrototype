@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface DetailViewController : UIViewController <UISplitViewControllerDelegate>
-
+#import "WheelView.h"
+@interface DetailViewController : UIViewController <UISplitViewControllerDelegate, WheelViewDataSource>
+@property (strong, nonatomic) IBOutlet WheelView *wheelview;
 @property (strong, nonatomic) id detailItem;
 
 @property (strong, nonatomic) IBOutlet UILabel *detailDescriptionLabel;

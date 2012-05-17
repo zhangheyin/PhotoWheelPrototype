@@ -52,10 +52,13 @@
                                         target:self 
                                 action:@selector(add:)];
 	/*ADD--- FOR addButton ---ADD*/
-    [[self navigationItem] setRightBarButtonItem:addButton];
+   // [[self navigationItem] setRightBarButtonItem:addButton];
 	/*ADD--- FOR editButtonItem ---ADD*/
-    [[self navigationItem] setLeftBarButtonItem:[self editButtonItem]];
-
+  //  [[self navigationItem] setLeftBarButtonItem:[self editButtonItem]];
+	/*ADD--- FOR addButton ---ADD*/
+    [[self navigationItem] setLeftBarButtonItem:addButton];
+	/*ADD--- FOR editButtonItem ---ADD*/
+    [[self navigationItem] setRightBarButtonItem:[self editButtonItem]];
 }
 - (void)add:(id)sender
 {

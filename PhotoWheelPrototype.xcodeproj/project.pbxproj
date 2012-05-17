@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7976E1F415649796007BC170 /* WheelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7976E1F315649796007BC170 /* WheelView.m */; };
+		7976E1FC1564D1DC007BC170 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7976E1FB1564D1DC007BC170 /* QuartzCore.framework */; };
 		79BEF4301562761A000039F8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79BEF42F1562761A000039F8 /* UIKit.framework */; };
 		79BEF4321562761A000039F8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79BEF4311562761A000039F8 /* Foundation.framework */; };
 		79BEF4341562761A000039F8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79BEF4331562761A000039F8 /* CoreGraphics.framework */; };
@@ -22,6 +24,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7976E1F215649796007BC170 /* WheelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WheelView.h; sourceTree = "<group>"; };
+		7976E1F315649796007BC170 /* WheelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WheelView.m; sourceTree = "<group>"; };
+		7976E1FB1564D1DC007BC170 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		79BEF42B1562761A000039F8 /* PhotoWheelPrototype.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoWheelPrototype.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		79BEF42F1562761A000039F8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		79BEF4311562761A000039F8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -48,6 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7976E1FC1564D1DC007BC170 /* QuartzCore.framework in Frameworks */,
 				79BEF4301562761A000039F8 /* UIKit.framework in Frameworks */,
 				79BEF4321562761A000039F8 /* Foundation.framework in Frameworks */,
 				79BEF4341562761A000039F8 /* CoreGraphics.framework in Frameworks */,
@@ -77,6 +83,7 @@
 		79BEF42E1562761A000039F8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7976E1FB1564D1DC007BC170 /* QuartzCore.framework */,
 				79BEF42F1562761A000039F8 /* UIKit.framework */,
 				79BEF4311562761A000039F8 /* Foundation.framework */,
 				79BEF4331562761A000039F8 /* CoreGraphics.framework */,
@@ -90,6 +97,8 @@
 				79BEF45E1562A5A2000039F8 /* NameEditorViewController.xib */,
 				79BEF43E1562761A000039F8 /* AppDelegate.h */,
 				79BEF45715627EA6000039F8 /* NameEditorViewController.h */,
+				7976E1F215649796007BC170 /* WheelView.h */,
+				7976E1F315649796007BC170 /* WheelView.m */,
 				79BEF45815627EA6000039F8 /* NameEditorViewController.m */,
 				79BEF43F1562761A000039F8 /* AppDelegate.m */,
 				79BEF4411562761A000039F8 /* MasterViewController.h */,
@@ -183,6 +192,7 @@
 				79BEF4431562761A000039F8 /* MasterViewController.m in Sources */,
 				79BEF4461562761A000039F8 /* DetailViewController.m in Sources */,
 				79BEF45A15627EA6000039F8 /* NameEditorViewController.m in Sources */,
+				7976E1F415649796007BC170 /* WheelView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,6 +314,7 @@
 				79BEF4511562761A000039F8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
