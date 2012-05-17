@@ -57,7 +57,7 @@
         //Add Listing 10.8
         
         
-        //commont by Listing 10.8 [cell setTransform:CGAffineTransformMakeTranslation(xPosition, yPosition)];
+        //comment by Listing 10.8 [cell setTransform:CGAffineTransformMakeTranslation(xPosition, yPosition)];
         //work out what the next angle is going to be
         angle += angleToAdd;
     }
