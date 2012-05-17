@@ -47,6 +47,11 @@
                                                       scale, 
                                                       scale)];
             
+            //tweak alpha using the same system as applied for scale.
+            //this time with 0.3 as the minimum and a semicircle rage
+            // of 0.5
+            [cell setAlpha:(.3f + .5f * (cosf(angleInRadians) + 1.f))];
+            
         } else {
             [cell setTransform:CGAffineTransformMakeTranslation(xPosition, yPosition)];
             [cell setAlpha:1.f];

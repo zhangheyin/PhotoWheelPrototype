@@ -52,12 +52,30 @@
 }
 
 #pragma mark - View lifecycle
-
+- (void) segmentedControlValueChanged:(id)sender
+{
+    NSInteger index = [sender selectedSegmentIndex];
+    if (index == 0) {
+        [[self wheelview] setStyle:WheelViewStyleWheel];
+    } else {
+        [[self wheelview] setStyle:WheelViewStyleCarousel];
+    }
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
    // [self configureView];
+    //ADD Listing 10.11
+    NSArray *segmentedItems = [NSArray arrayWithObjects:@"Wheel", @"Carousel", nil];
+    UISegmentedControl *segmentedControl = [[UISegmentedControl alloc]initWithItems:segmentedItems];
+    [segmentedControl addTarget:self
+                         action:@selector(segmentedControlValueChanged:)
+               forControlEvents:UIControlEventValueChanged];
+    [segmentedControl setSegmentedControlStyle:UISegmentedControlStyleBar];
+    [[self navigationItem] setTitleView:segmentedControl];
+    //ADD Listing 10.11   
+    
     CGRect cellFrame = CGRectMake(0, 0, 75, 75);
     NSInteger count = 10;
     NSMutableArray *newArray = [[NSMutableArray alloc] initWithCapacity:count];
@@ -68,6 +86,8 @@
     }
     [self setData:[newArray copy]];
 }
+
+
 
 - (void)viewDidUnload
 {
