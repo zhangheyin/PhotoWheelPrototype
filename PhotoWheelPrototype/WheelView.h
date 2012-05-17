@@ -11,7 +11,7 @@
 @class WheelViewCell;
 typedef enum {
     WheelViewStyleWheel,
-    WheelViewStyleCarousel,
+    WheelViewStyleCarousel, //旋转木马
 } WheelViewStyle;
 
 @interface WheelView : UIView
