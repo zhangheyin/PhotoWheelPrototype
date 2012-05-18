@@ -8,10 +8,55 @@
 
 #import "WheelView.h"
 #import <QuartzCore/QuartzCore.h>
+#import "SpinGestureRecongnizer.h"
+//Add Listing 11.5
+@interface WheelView()
+@property (nonatomic, assign) CGFloat currentAngle;
+@end
+//Add Listing 11.5
 @implementation WheelView
 @synthesize dataSource = _dataSource;
 @synthesize style = _style;
-
+@synthesize currentAngle = _currentAngle;
+//Add Listing 11.5
+- (void) commonInit
+{
+    [self setCurrentAngle:.0f];
+    SpinGestureRecongnizer *spin = [[SpinGestureRecongnizer alloc]
+                                    initWithTarget:self
+                                    action:@selector(spin:)];
+    [self addGestureRecognizer:spin];
+}
+//Add Listing 11.5
+//Add Listing 11.5
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        [self commonInit];
+    }
+    return self;
+}   
+//Add Listing 11.5
+- (id) initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        [self commonInit];
+    }
+    return self;
+}
+//Add Listing 11.5
+//Add Listing 11.5
+- (id)initWithFrame:(CGRect)frame
+{
+    self  = [super initWithFrame:frame];
+    if (self) {
+        [self commonInit];
+    }
+    return self;
+}
+//Add Listing 11.5
 - (void) setAngle:(CGFloat)angle
 {
     CGPoint center = CGPointMake(CGRectGetMidX([self bounds]), CGRectGetMidY([self bounds]));
@@ -67,21 +112,31 @@
         angle += angleToAdd;
     }
 }
+//Add Listing 11.5
+- (void) layoutSubviews
+{
+    [self setAngle:[self currentAngle]];//COMMIT OUT LISTING 11.5];
+}
+//Add Listing 11.5
 //Listing 10.7
 - (void) setStyle:(WheelViewStyle)newStyle
 {
     if (_style != newStyle) {
         _style = newStyle;
         [UIView beginAnimations:@"WheelViewStyleChange" context:nil];
-        [self setAngle:0];
+        [self setAngle:[self currentAngle]];//COMMIT OUT LISTING 11.5];
         [UIView commitAnimations];
     }
 }
-
-- (void) layoutSubviews
+//Add Listing 11.5
+- (void)spin:(SpinGestureRecongnizer *)recognizer
 {
-    [self setAngle:0];
+    CGFloat angleInRadians = -[recognizer rotation];
+    CGFloat degrees = 180.f * angleInRadians / M_PI; //radians to degrees;
+    [self setCurrentAngle:[self currentAngle] + degrees];
+    [self setAngle:[self currentAngle]];
 }
+//Add Listing 11.5
 /*
 - (id)initWithFrame:(CGRect)frame
 {
