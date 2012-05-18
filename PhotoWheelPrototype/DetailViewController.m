@@ -7,7 +7,7 @@
 //
 
 #import "DetailViewController.h"
-
+#import "PhotoWheelViewCell.h"
 @interface DetailViewController ()
 @property (strong, nonatomic) NSArray *data; //Listing 10.4
 @property (strong, nonatomic) UIPopoverController *masterPopoverController;
@@ -76,12 +76,19 @@
     [[self navigationItem] setTitleView:segmentedControl];
     //ADD Listing 10.11   
     
+    //Add Listing 10.14
+    UIImage *defaultPhoto = [UIImage imageNamed:@"defaultPhoto.png"];
+    //Add Listing 10.14
     CGRect cellFrame = CGRectMake(0, 0, 75, 75);
     NSInteger count = 10;
     NSMutableArray *newArray = [[NSMutableArray alloc] initWithCapacity:count];
     for (NSInteger index = 0; index < count; index++) {
-        WheelViewCell *cell = [[WheelViewCell alloc] initWithFrame:cellFrame];
-        [cell setBackgroundColor:[UIColor blueColor]];
+        //commit at Listing 10.14 WheelViewCell *cell = [[WheelViewCell alloc] initWithFrame:cellFrame];
+        //commit at Listing 10.14 [cell setBackgroundColor:[UIColor blueColor]];
+        //Add Listing 10.14       
+        PhotoWheelViewCell *cell = [[PhotoWheelViewCell alloc] initWithFrame:cellFrame];
+        [cell setImage:defaultPhoto];
+        //Add Listing 10.14
         [newArray addObject:cell];
     }
     [self setData:[newArray copy]];
