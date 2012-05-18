@@ -8,7 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "WheelView.h"
-@interface DetailViewController : UIViewController <UISplitViewControllerDelegate, WheelViewDataSource>
+@interface DetailViewController : UIViewController 
+<UISplitViewControllerDelegate, WheelViewDataSource, 
+UIActionSheetDelegate, //Add Listing 12.3 
+UINavigationControllerDelegate,//Add Listing 12.4 page 278
+UIImagePickerControllerDelegate //Add Listing 12.4 page 278
+>
 @property (strong, nonatomic) IBOutlet WheelView *wheelview;
 @property (strong, nonatomic) id detailItem;
 

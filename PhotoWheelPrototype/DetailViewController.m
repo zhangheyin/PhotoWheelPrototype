@@ -9,17 +9,46 @@
 #import "DetailViewController.h"
 #import "PhotoWheelViewCell.h"
 @interface DetailViewController ()
+@property (strong, nonatomic) UIImagePickerController *imagePickerController;//Add Listing 12.4 page 278
+@property (strong, nonatomic) UIActionSheet *actionSheet; //Add Listing 12.3 page 275
+@property (strong, nonatomic) PhotoWheelViewCell *selectedPhotoWheelViewCell;//add Listing 12.1
 @property (strong, nonatomic) NSArray *data; //Listing 10.4
 @property (strong, nonatomic) UIPopoverController *masterPopoverController;
 - (void)configureView;
 @end
 
 @implementation DetailViewController
+@synthesize imagePickerController = _imagePickerController; //Add Listing 12.4 page 278
+@synthesize actionSheet = _actionSheet;
+@synthesize selectedPhotoWheelViewCell = _selectedPhotoWheelViewCell; //add Listing 12.1
 @synthesize data = _data;
 @synthesize detailItem = _detailItem;
 @synthesize detailDescriptionLabel = _detailDescriptionLabel;
 @synthesize masterPopoverController = _masterPopoverController;
 @synthesize wheelview = _wheelview;
+
+//Add Listing 12.4 page 278
+- (id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        self.title = NSLocalizedString(@"Detail", @"Detail");
+        [self setImagePickerController:[[UIImagePickerController alloc] init]];
+        [[self imagePickerController] setDelegate:self];
+    }
+    return self;
+}
+//Add Listing 12.4 page 278
+//add Listing 12.1
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation 
+                                duration:(NSTimeInterval)duration
+{
+    if ([self actionSheet]) {
+        [[self actionSheet] dismissWithClickedButtonIndex:-1 animated:YES];
+    }
+}
+//add Listing 12.1
+
 #pragma mark - Managing the detail item
 
 - (void)setDetailItem:(id)newDetailItem
@@ -112,14 +141,91 @@
 }
 
 
+//add Listing 12.2 Page 273
+-(void) presentPhotoLibrary
+{
+    NSLog(@"%s", __PRETTY_FUNCTION__);
+    //Add Listing 12.5 Page280    
+    [[self imagePickerController] setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+    UIView *view = [self selectedPhotoWheelViewCell];
+    CGRect rect = [view bounds];
+    UIPopoverController *newPopoverController = 
+    [[UIPopoverController alloc] initWithContentViewController:[self imagePickerController]];
+    [newPopoverController presentPopoverFromRect:rect 
+                                          inView:view 
+                        permittedArrowDirections:UIPopoverArrowDirectionAny 
+                                        animated:YES];
+    [self setMasterPopoverController:newPopoverController];    
+    //Add Listing 12.5 Page280
+}
+
+- (void) presentCamera
+{
+    NSLog(@"%s", __PRETTY_FUNCTION__);
+    //Add Listing 12.5 Page280
+    //display the camera
+    [[self imagePickerController] setSourceType:UIImagePickerControllerSourceTypeCamera];
+    [self presentModalViewController:[self imagePickerController] animated:YES];
+    //Add Listing 12.5 Page280
+}
+
+- (void) presentPhotoPickerMenu
+{
+    NSLog(@"%s", __PRETTY_FUNCTION__);
+    //add Listing 12.3 page 276
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] init];
+    [actionSheet setDelegate:self];
+    [actionSheet addButtonWithTitle:@"Take Photo"];
+    [actionSheet addButtonWithTitle:@"Choose from Library"];
+    
+    UIView *view = [self selectedPhotoWheelViewCell];
+    CGRect rect = [view bounds];
+    [actionSheet showFromRect:rect inView:view animated:YES];
+    [self setActionSheet:actionSheet];
+    //add Listing 12.3 page 276
+}
+    //add Listing 12.3 page 276
+#pragma mark - UIActionSheetdelegate methods
+- (void) actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    switch (buttonIndex) {
+        case 0:
+            [self presentCamera];
+            break;
+        case 1:
+            [self presentPhotoLibrary];
+            break;
+    }
+}
+    //add Listing 12.3 page 276
+    //add Listing 12.3 page 276
+- (void) actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex 
+{
+    [self setActionSheet:nil];
+}
+    //add Listing 12.3 page 276
+//add Listing 12.2 Page 273
 - (void) cellTapped:(UITapGestureRecognizer *)recognizer
 {
     NSLog(@"%s", __PRETTY_FUNCTION__);
+    //ADD Listing 12.1
+    [self setSelectedPhotoWheelViewCell:(PhotoWheelViewCell *)[recognizer view]]; 
+  //add Listing 12.2 Page 273  
+    BOOL hasCamera = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
+    
+    if (hasCamera) {
+        [self presentPhotoPickerMenu];
+    } else {
+        [self presentPhotoLibrary];
+    }
+    //add Listing 12.2 Page 273
 }
 - (void) cellDoubleTapped:(UITapGestureRecognizer *)recognizer
 {
     NSLog(@"%s", __PRETTY_FUNCTION__);
 }
+
+
 - (void)viewDidUnload
 {
     [super viewDidUnload];
@@ -153,14 +259,6 @@
     return YES;
 }
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        self.title = NSLocalizedString(@"Detail", @"Detail");
-    }
-    return self;
-}
 							
 #pragma mark - Split view
 
@@ -191,4 +289,36 @@
     WheelViewCell *cell = [[self data] objectAtIndex:index];
     return cell;
 }
+
+#pragma mark - UIImagePickerControllerDelegate method
+//Add Listing 12.6 Page 281 responding to the UiimagePickerController Delegate Method
+-(void) imagePickerController:(UIImagePickerController *)picker 
+didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    //if the popover controller is available.
+    //assume the photo is selected from the library
+    //and not from the camera.
+    //ADD listing 12.7
+    BOOL takenWithCamera = ([self masterPopoverController] == nil);
+    //ADD listing 12.7
+
+    //Dismiss the Popover Controller if available;
+    //otherwiss dismiss the camera view/
+    if ([self masterPopoverController]) {
+        [[self masterPopoverController] dismissPopoverAnimated:YES];
+        [self setMasterPopoverController:nil];
+    } else {
+        [self dismissModalViewControllerAnimated:YES];
+    }
+    
+    //Retrieve and display the image.
+    UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    [[self selectedPhotoWheelViewCell] setImage:image];
+    //ADD listing 12.7   Page 284
+    if (takenWithCamera) {
+        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
+    }
+    //ADD listing 12.7   Page 284
+}
+//Add Listing 12.6 Page 281 
 @end
