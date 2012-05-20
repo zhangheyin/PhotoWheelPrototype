@@ -147,11 +147,20 @@
     NSString *newName = [[controller nameTextField] text];
     if (newName && [newName length] > 0) {
         if ([controller isEditing]) {
-            [[self data] replaceObjectAtIndex:[[controller indexPath] row] 
-                                   withObject:newName];
+            //Adding Listing 13.7 Page 292
+            NSMutableDictionary *photoAlbum = [[self data] objectAtIndex:[[controller indexPath] row]];
+            [photoAlbum setObject:newName forKey:kPhotoAlbumNameKey];
+            
+            //Adding Listing 13.7 Page 292            
+            //Commit Listing 13.7 Page 292[[self data] replaceObjectAtIndex:[[controller indexPath] row] 
+              //Commit Listing 13.7 Page 292withObject:newName];
         } else {
-            [[self data] addObject:newName];
+            //[[self data] addObject:newName];
+            //Adding Listing 13.7 Page 292          
+            [[self data] addObject:[self newPhotoAlbumwithName:newName]];
         }
+        //Adding Listing 13.7 Page 292          
+        [self savePhotoAlbum];
         [[self tableView] reloadData];
     } 
 }
@@ -221,7 +230,17 @@
 
     // Configure the cell.
     /*ADD---  ---ADD*/
-    cell.textLabel.text = [self.data objectAtIndex:[indexPath row]];
+    // Listing 13.6 Page 292
+    //update table cell code in this
+    NSDictionary *album = [[self data] objectAtIndex:[indexPath row]];
+    [[cell textLabel] setText:[album objectForKey:kPhotoAlbumNameKey]];
+    
+    if ([indexPath row] == [self currentAlbumIndex]) {
+        [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
+    } else {
+        [cell setAccessoryType:UITableViewCellAccessoryNone];
+    }
+   // Listing 13.6 Page 292 cell.textLabel.text = [self.data objectAtIndex:[indexPath row]];
 
     return cell;
 }
