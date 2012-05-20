@@ -16,5 +16,5 @@
 @property (strong, nonatomic) DetailViewController *detailViewController;
 
 /*ADD--- FOR DATA ---ADD*/
-@property (strong, nonatomic) /*NSMutableOrderedSet modify 288 */ NSMutableArray *data; 
+@property (strong, nonatomic) NSMutableOrderedSet/* modify 288  NSMutableArray*/ *data; 
 @end

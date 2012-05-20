@@ -49,24 +49,25 @@
 - (NSMutableDictionary *)newPhotoAlbumwithName:(NSString *)albumName
 {
     NSMutableDictionary *newAlbum = [NSMutableDictionary dictionary];
-    [newAlbum setObject:albumName forKey:kPhotoAlbumFileName];
-    [newAlbum setObject:[NSDate date] forKey:kPhotoAlbumNameKey];
+    [newAlbum setObject:albumName forKey:kPhotoAlbumNameKey];
+    [newAlbum setObject:[NSDate date] forKey:kPhotoAlbumDateAddedKey];
     NSMutableArray *photos = [NSMutableArray array];
     for (NSUInteger index = 0; index < 10; index++) {
         [photos addObject:[NSDictionary dictionary]];
     }
-    [newAlbum setObject:photos forKey:kPhotoAlbumNameKey];
+    [newAlbum setObject:photos forKey:kPhotoAlbumPhotosKey];
     return newAlbum;
 }
 
 - (void)savePhotoAlbum
 {
-    [[self data] writeToURL:[self photoAlbumPath] atomically:YES];
+    NSArray *darray = [[self data] array];
+    [darray writeToURL:[self photoAlbumPath] atomically:YES];
 }
 
-- (void)readSavePhotoAlbums
+- (void)readSavedPhotoAlbums
 {
-    NSMutableArray *saveAlbums = nil;
+    NSMutableArray *savedAlbums = nil;
     NSData *photoAlbumData = [NSData dataWithContentsOfURL:[self photoAlbumPath]];
     if (photoAlbumData != nil) {
         NSMutableArray *albums = [NSPropertyListSerialization
@@ -74,12 +75,14 @@
                                   options:NSPropertyListMutableContainers
                                   format:nil 
                                   error:nil];
-        [self setData:albums];
+        NSMutableOrderedSet *data = [[NSMutableOrderedSet alloc] initWithArray:albums];
+        [self setData:data];
     } else {
-        saveAlbums = [NSMutableArray array];
+        savedAlbums = [NSMutableArray array];
         //Create an initial album
-        [saveAlbums addObject:[self newPhotoAlbumwithName:@"First album"]];
-        [self setData:saveAlbums];
+        [savedAlbums addObject:[self newPhotoAlbumwithName:@"First album"]];
+        NSMutableOrderedSet *data = [[NSMutableOrderedSet alloc] initWithArray:savedAlbums];
+        [self setData:data];
         [self savePhotoAlbum];
     }
 }
@@ -97,14 +100,14 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     self.title = NSLocalizedString(@"Photo Albums", @"Photo albums title");
-    [self setData:[[NSMutableArray alloc] init]];/*NSMutableOrderedSet modify 288 */
-    [[self data] addObject:@"A Sample Photo Album"];
-    [[self data] addObject:@"Another Photo Album"];
+   //modify 288  [self setData:[[NSMutableArray alloc] init]];/*NSMutableOrderedSet modify 288 */
+   //modify 288  [[self data] addObject:@"A Sample Photo Album"];
+   //modify 288  [[self data] addObject:@"Another Photo Album"];
     
-    [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 
-                                                            inSection:0] 
-                                animated:NO 
-                          scrollPosition:UITableViewScrollPositionMiddle];
+   //modify 288  [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 
+    //modify 288  inSection:0] 
+    //modify 288                             animated:NO 
+     //modify 288                      scrollPosition:UITableViewScrollPositionMiddle];
     
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] 
                     initWithBarButtonSystemItem:UIBarButtonSystemItemAdd 
@@ -121,7 +124,7 @@
     
     
     //Add Listing 13.5 Page 291
-    [self readSavePhotoAlbums];
+    [self readSavedPhotoAlbums];
     [[self detailViewController] setPhotoAlbum:[[self data] objectAtIndex:0]];
     [[NSNotificationCenter defaultCenter] addObserver:self 
                                              selector:@selector(photoAlbumSaveNeeded:) 
@@ -233,10 +236,11 @@
     // Listing 13.6 Page 292
     //update table cell code in this
     NSDictionary *album = [[self data] objectAtIndex:[indexPath row]];
+    NSLog(@"%@", album);
     [[cell textLabel] setText:[album objectForKey:kPhotoAlbumNameKey]];
     
     if ([indexPath row] == [self currentAlbumIndex]) {
-        [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
+        [cell setAccessoryType:UITableViewCellAccessoryCheckmark];	
     } else {
         [cell setAccessoryType:UITableViewCellAccessoryNone];
     }

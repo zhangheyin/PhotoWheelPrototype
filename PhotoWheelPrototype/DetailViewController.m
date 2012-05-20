@@ -370,8 +370,9 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
 //Add Listing 13.22 Updating the Wheel View When a New Photo Album is Selected
 - (void) setPhotoAlbum:(NSMutableDictionary *)photoAlbum
 {
-    photoAlbum_ = photoAlbum;
-    
+    //photoAlbum_ = photoAlbum;
+    _photoAlbum = photoAlbum;
+    NSLog(@"%@", photoAlbum);
     UIImage *defaultPhoto = [UIImage imageNamed:@"defaultPhoto.png"];
     for (NSUInteger index = 0; index < 10; index++) {
         PhotoWheelViewCell *nub = [[self data] objectAtIndex:index];
@@ -391,7 +392,6 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
         } else {
             [nub setImage:defaultPhoto];
         }
-                                                       
     }
 }
 //Add Listing 13.22
