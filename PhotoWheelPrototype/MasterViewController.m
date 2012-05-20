@@ -307,8 +307,15 @@ moveRowAtIndexPath:(NSIndexPath *)fromIndexPath
 - (void)tableView:(UITableView *)tableView 
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *name = [[self data] objectAtIndex:[indexPath row]];
-    [[self detailViewController] setDetailItem:name];
+    //Add Listing 13.8 Changing the Selected album
+    NSIndexPath *oldCurrentAlbumIndexPath = [NSIndexPath indexPathForRow:[self currentAlbumIndex] inSection:0];
+    [self setCurrentAlbumIndex:[indexPath row]];
+    [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, oldCurrentAlbumIndexPath, nil] withRowAnimation:UITableViewRowAnimationNone];
+    [[self detailViewController] setPhotoAlbum:[[self data] objectAtIndex:[indexPath row]]];
+    //Add Listing 13.8 Changing the Selected album    
+    
+    //Listing 13.8NSString *name = [[self data] objectAtIndex:[indexPath row]];
+    //Listing 13.8[[self detailViewController] setDetailItem:name];
 }
 
 

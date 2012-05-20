@@ -16,7 +16,7 @@ UIImagePickerControllerDelegate //Add Listing 12.4 page 278
 >
 @property (strong, nonatomic) IBOutlet WheelView *wheelview;
 @property (strong, nonatomic) id detailItem;
-
+@property (strong, nonatomic) NSMutableDictionary *photoAlbum; //Add Listing Page 293
 @property (strong, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
 
 @end
