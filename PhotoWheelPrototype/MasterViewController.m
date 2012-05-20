@@ -8,9 +8,12 @@
 
 #import "MasterViewController.h"
 #import "DetailViewController.h"
-
+#import "GlobalPhotoKeys.h"
+@interface MasterViewController ()
+@property (readwrite, assign) NSUInteger currentAlbumIndex; //Listing 13.3
+@end
 @implementation MasterViewController
-
+@synthesize currentAlbumIndex = _currentAlbumIndex; //Listing 13.3
 @synthesize detailViewController = _detailViewController;
 /*ADD--- FOR DATA ---ADD*/
 @synthesize data = _data;
@@ -30,7 +33,63 @@
     [super didReceiveMemoryWarning];
     // Release any cached data, images, etc that aren't in use.
 }
+//Lising 13.4 Page 289 Methods to Manage Photo Albums in this
+#pragma mark - Read and save photo albums
+- (NSURL *)photoAlbumPath
+{
+    NSURL *documentsDirectory = [[[NSFileManager defaultManager]
+                                  URLsForDirectory:NSDocumentDirectory 
+                                  inDomains:NSUserDomainMask] lastObject];
+    NSURL *photoAlbumPath = 
+    [documentsDirectory URLByAppendingPathComponent:(NSString *)kPhotoAlbumFileName];
+    
+    return photoAlbumPath;
+}
 
+- (NSMutableDictionary *)newPhotoAlbumwithName:(NSString *)albumName
+{
+    NSMutableDictionary *newAlbum = [NSMutableDictionary dictionary];
+    [newAlbum setObject:albumName forKey:kPhotoAlbumFileName];
+    [newAlbum setObject:[NSDate date] forKey:kPhotoAlbumNameKey];
+    NSMutableArray *photos = [NSMutableArray array];
+    for (NSUInteger index = 0; index < 10; index++) {
+        [photos addObject:[NSDictionary dictionary]];
+    }
+    [newAlbum setObject:photos forKey:kPhotoAlbumNameKey];
+    return newAlbum;
+}
+
+- (void)savePhotoAlbum
+{
+    [[self data] writeToURL:[self photoAlbumPath] atomically:YES];
+}
+
+- (void)readSavePhotoAlbums
+{
+    NSMutableArray *saveAlbums = nil;
+    NSData *photoAlbumData = [NSData dataWithContentsOfURL:[self photoAlbumPath]];
+    if (photoAlbumData != nil) {
+        NSMutableArray *albums = [NSPropertyListSerialization
+                                  propertyListWithData:photoAlbumData
+                                  options:NSPropertyListMutableContainers
+                                  format:nil 
+                                  error:nil];
+        [self setData:albums];
+    } else {
+        saveAlbums = [NSMutableArray array];
+        //Create an initial album
+        [saveAlbums addObject:[self newPhotoAlbumwithName:@"First album"]];
+        [self setData:saveAlbums];
+        [self savePhotoAlbum];
+    }
+}
+
+- (void)photoAlbumSaveNeeded:(NSNotification *)notification
+{
+    [self savePhotoAlbum];
+}
+
+//Lising 13.4 Page 289
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
@@ -38,7 +97,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     self.title = NSLocalizedString(@"Photo Albums", @"Photo albums title");
-    [self setData:[[NSMutableOrderedSet alloc] init]];
+    [self setData:[[NSMutableArray alloc] init]];/*NSMutableOrderedSet modify 288 */
     [[self data] addObject:@"A Sample Photo Album"];
     [[self data] addObject:@"Another Photo Album"];
     
@@ -59,6 +118,18 @@
     [[self navigationItem] setLeftBarButtonItem:addButton];
 	/*ADD--- FOR editButtonItem ---ADD*/
     [[self navigationItem] setRightBarButtonItem:[self editButtonItem]];
+    
+    
+    //Add Listing 13.5 Page 291
+    [self readSavePhotoAlbums];
+    [[self detailViewController] setPhotoAlbum:[[self data] objectAtIndex:0]];
+    [[NSNotificationCenter defaultCenter] addObserver:self 
+                                             selector:@selector(photoAlbumSaveNeeded:) 
+                                                 name:kPhotoAlbumSaveNotification 
+                                               object:[self detailViewController]];
+  
+     
+    //Add Listing 13.5 Page 291
 }
 - (void)add:(id)sender
 {
@@ -220,5 +291,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     NSString *name = [[self data] objectAtIndex:[indexPath row]];
     [[self detailViewController] setDetailItem:name];
 }
+
+
 
 @end

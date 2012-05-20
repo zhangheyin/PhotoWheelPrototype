@@ -24,6 +24,7 @@
 		79BEF44C1562761A000039F8 /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79BEF44A1562761A000039F8 /* DetailViewController.xib */; };
 		79BEF45A15627EA6000039F8 /* NameEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BEF45815627EA6000039F8 /* NameEditorViewController.m */; };
 		79BEF45F1562A5A2000039F8 /* NameEditorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79BEF45E1562A5A2000039F8 /* NameEditorViewController.xib */; };
+		79C2FE4E1567CEF600E03185 /* GlobalPhotoKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C2FE4D1567CEF600E03185 /* GlobalPhotoKeys.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,8 @@
 		79BEF45715627EA6000039F8 /* NameEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NameEditorViewController.h; sourceTree = "<group>"; };
 		79BEF45815627EA6000039F8 /* NameEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NameEditorViewController.m; sourceTree = "<group>"; };
 		79BEF45E1562A5A2000039F8 /* NameEditorViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NameEditorViewController.xib; sourceTree = "<group>"; };
+		79C2FE4C1567CEF600E03185 /* GlobalPhotoKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalPhotoKeys.h; sourceTree = "<group>"; };
+		79C2FE4D1567CEF600E03185 /* GlobalPhotoKeys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalPhotoKeys.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +123,8 @@
 				79BEF4471562761A000039F8 /* MasterViewController.xib */,
 				79BEF44A1562761A000039F8 /* DetailViewController.xib */,
 				79BEF4361562761A000039F8 /* Supporting Files */,
+				79C2FE4C1567CEF600E03185 /* GlobalPhotoKeys.h */,
+				79C2FE4D1567CEF600E03185 /* GlobalPhotoKeys.m */,
 			);
 			path = PhotoWheelPrototype;
 			sourceTree = "<group>";
@@ -209,6 +214,7 @@
 				7976E1F415649796007BC170 /* WheelView.m in Sources */,
 				7976E20B1565D9AD007BC170 /* PhotoWheelViewCell.m in Sources */,
 				7976E2151565EDAD007BC170 /* SpinGestureRecongnizer.m in Sources */,
+				79C2FE4E1567CEF600E03185 /* GlobalPhotoKeys.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
