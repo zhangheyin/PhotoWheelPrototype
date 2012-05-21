@@ -8,13 +8,15 @@
 
 #import "MasterViewController.h"
 #import "DetailViewController.h"
-#import "GlobalPhotoKeys.h"
+#import "PhotoAlbum.h"
 @interface MasterViewController ()
-@property (readwrite, assign) NSUInteger currentAlbumIndex; //Listing 13.3
+@property (readwrite, assign) NSUInteger currentAlbumIndex;
 @end
+
 @implementation MasterViewController
-@synthesize currentAlbumIndex = _currentAlbumIndex; //Listing 13.3
+@synthesize currentAlbumIndex = _currentAlbumIndex;
 @synthesize detailViewController = _detailViewController;
+@synthesize managedObjectContext = _managedObjectContext;
 /*ADD--- FOR DATA ---ADD*/
 @synthesize data = _data;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -33,66 +35,7 @@
     [super didReceiveMemoryWarning];
     // Release any cached data, images, etc that aren't in use.
 }
-//Lising 13.4 Page 289 Methods to Manage Photo Albums in this
-#pragma mark - Read and save photo albums
-- (NSURL *)photoAlbumPath
-{
-    NSURL *documentsDirectory = [[[NSFileManager defaultManager]
-                                  URLsForDirectory:NSDocumentDirectory 
-                                  inDomains:NSUserDomainMask] lastObject];
-    NSURL *photoAlbumPath = 
-    [documentsDirectory URLByAppendingPathComponent:(NSString *)kPhotoAlbumFileName];
-    
-    return photoAlbumPath;
-}
 
-- (NSMutableDictionary *)newPhotoAlbumwithName:(NSString *)albumName
-{
-    NSMutableDictionary *newAlbum = [NSMutableDictionary dictionary];
-    [newAlbum setObject:albumName forKey:kPhotoAlbumNameKey];
-    [newAlbum setObject:[NSDate date] forKey:kPhotoAlbumDateAddedKey];
-    NSMutableArray *photos = [NSMutableArray array];
-    for (NSUInteger index = 0; index < 10; index++) {
-        [photos addObject:[NSDictionary dictionary]];
-    }
-    [newAlbum setObject:photos forKey:kPhotoAlbumPhotosKey];
-    return newAlbum;
-}
-
-- (void)savePhotoAlbum
-{
-    NSArray *darray = [[self data] array];
-    [darray writeToURL:[self photoAlbumPath] atomically:YES];
-}
-
-- (void)readSavedPhotoAlbums
-{
-    NSMutableArray *savedAlbums = nil;
-    NSData *photoAlbumData = [NSData dataWithContentsOfURL:[self photoAlbumPath]];
-    if (photoAlbumData != nil) {
-        NSMutableArray *albums = [NSPropertyListSerialization
-                                  propertyListWithData:photoAlbumData
-                                  options:NSPropertyListMutableContainers
-                                  format:nil 
-                                  error:nil];
-        NSMutableOrderedSet *data = [[NSMutableOrderedSet alloc] initWithArray:albums];
-        [self setData:data];
-    } else {
-        savedAlbums = [NSMutableArray array];
-        //Create an initial album
-        [savedAlbums addObject:[self newPhotoAlbumwithName:@"First album"]];
-        NSMutableOrderedSet *data = [[NSMutableOrderedSet alloc] initWithArray:savedAlbums];
-        [self setData:data];
-        [self savePhotoAlbum];
-    }
-}
-
-- (void)photoAlbumSaveNeeded:(NSNotification *)notification
-{
-    [self savePhotoAlbum];
-}
-
-//Lising 13.4 Page 289
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
@@ -100,14 +43,26 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     self.title = NSLocalizedString(@"Photo Albums", @"Photo albums title");
-   //modify 288  [self setData:[[NSMutableArray alloc] init]];/*NSMutableOrderedSet modify 288 */
-   //modify 288  [[self data] addObject:@"A Sample Photo Album"];
-   //modify 288  [[self data] addObject:@"Another Photo Album"];
+   // [self setData:[[NSMutableOrderedSet alloc] init]];
+    //[[self data] addObject:@"A Sample Photo Album"];
+  //  [[self data] addObject:@"Another Photo Album"];
     
-   //modify 288  [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 
-    //modify 288  inSection:0] 
-    //modify 288                             animated:NO 
-     //modify 288                      scrollPosition:UITableViewScrollPositionMiddle];
+    //MasterViewController.m’s –viewDidLoad Page 320
+  //  Listing 13.27 Setting Up the List of Photo Albums
+    [self setData:[PhotoAlbum allPhotoAlbumsInContext:[self managedObjectContext]]];
+    if ([[self data] count] == 0) {
+        PhotoAlbum *newAlbum = [PhotoAlbum
+                                newPhotoAlbumWithName:@"First album"
+                                inContext:[self managedObjectContext]];
+        [self setData:[NSMutableArray arrayWithObject:newAlbum]];
+        [[self managedObjectContext] save:nil];
+    }
+    //MasterViewController.m’s –viewDidLoad Page 320
+    //  Listing 13.27 Setting Up the List of Photo Albums
+    [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 
+                                                            inSection:0] 
+                                animated:NO 
+                          scrollPosition:UITableViewScrollPositionMiddle];
     
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] 
                     initWithBarButtonSystemItem:UIBarButtonSystemItemAdd 
@@ -122,17 +77,7 @@
 	/*ADD--- FOR editButtonItem ---ADD*/
     [[self navigationItem] setRightBarButtonItem:[self editButtonItem]];
     
-    
-    //Add Listing 13.5 Page 291
-    [self readSavedPhotoAlbums];
     [[self detailViewController] setPhotoAlbum:[[self data] objectAtIndex:0]];
-    [[NSNotificationCenter defaultCenter] addObserver:self 
-                                             selector:@selector(photoAlbumSaveNeeded:) 
-                                                 name:kPhotoAlbumSaveNotification 
-                                               object:[self detailViewController]];
-  
-     
-    //Add Listing 13.5 Page 291
 }
 - (void)add:(id)sender
 {
@@ -143,30 +88,27 @@
     [self presentModalViewController:newController animated:YES];
     
 }
-
+//Listing 13.30 Handling Photo Album Name Editor Callbacks with Core Data  Page 322
 -(void) nameEditorViewControllerDidFinish:(NameEditorViewController *)controller
 {
     NSLog(@"%s", __PRETTY_FUNCTION__);
     NSString *newName = [[controller nameTextField] text];
     if (newName && [newName length] > 0) {
         if ([controller isEditing]) {
-            //Adding Listing 13.7 Page 292
-            NSMutableDictionary *photoAlbum = [[self data] objectAtIndex:[[controller indexPath] row]];
-            [photoAlbum setObject:newName forKey:kPhotoAlbumNameKey];
-            
-            //Adding Listing 13.7 Page 292            
-            //Commit Listing 13.7 Page 292[[self data] replaceObjectAtIndex:[[controller indexPath] row] 
-              //Commit Listing 13.7 Page 292withObject:newName];
+            PhotoAlbum *album = [[self data]
+                                 objectAtIndex:[[controller indexPath] row]];
+            [album setName:newName];
         } else {
-            //[[self data] addObject:newName];
-            //Adding Listing 13.7 Page 292          
-            [[self data] addObject:[self newPhotoAlbumwithName:newName]];
+            PhotoAlbum *newAlbum = [PhotoAlbum
+                                    newPhotoAlbumWithName:newName
+                                    inContext:[self managedObjectContext]];
+            [[self data] addObject:newAlbum];
         }
-        //Adding Listing 13.7 Page 292          
-        [self savePhotoAlbum];
+        [[self managedObjectContext] save:nil];
         [[self tableView] reloadData];
-    } 
+    }
 }
+//Listing 13.30 Handling Photo Album Name Editor Callbacks with Core Data  Page 322
 
 -(void) nameEditorViewControllerDidCancel:(NameEditorViewController *)controller
 {
@@ -233,19 +175,16 @@
 
     // Configure the cell.
     /*ADD---  ---ADD*/
-    // Listing 13.6 Page 292
-    //update table cell code in this
-    NSDictionary *album = [[self data] objectAtIndex:[indexPath row]];
-    NSLog(@"%@", album);
-    [[cell textLabel] setText:[album objectForKey:kPhotoAlbumNameKey]];
-    
+    //cell.textLabel.text = [self.data objectAtIndex:[indexPath row]];
+    //Listing 13.28 Configuring Table Cells to Show Photo Album Information Page 321
+    PhotoAlbum *album = [[self data] objectAtIndex:[indexPath row]];
+    [[cell textLabel] setText:[album name]];
     if ([indexPath row] == [self currentAlbumIndex]) {
-        [cell setAccessoryType:UITableViewCellAccessoryCheckmark];	
+        [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
     } else {
         [cell setAccessoryType:UITableViewCellAccessoryNone];
     }
-   // Listing 13.6 Page 292 cell.textLabel.text = [self.data objectAtIndex:[indexPath row]];
-
+    //Listing 13.28 Configuring Table Cells to Show Photo Album Information Page 321
     return cell;
 }
 - (void) tableView:(UITableView *)tableView 
@@ -255,7 +194,11 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
     [newController setDelegate:self];
     [newController setEditing:YES];
     [newController setIndexPath:indexPath];
-    NSString *name = [[self data] objectAtIndex:[indexPath row]];
+   // NSString *name = [[self data] objectAtIndex:[indexPath row]];
+   // Listing 13.29 Loading the Name Editor for a Core Data Photo Album Entity Page 322
+    NSString *name = [[[self data] objectAtIndex:[indexPath row]]
+                      valueForKey:@"name"];
+  //  Listing 13.29 Loading the Name Editor for a Core Data Photo Album Entity Page 322
     //Replace [[newController nameTextField] setText:name];
     [newController setDefaultNameText:name];
     [newController setModalPresentationStyle:UIModalPresentationFormSheet];
@@ -311,17 +254,20 @@ moveRowAtIndexPath:(NSIndexPath *)fromIndexPath
 - (void)tableView:(UITableView *)tableView 
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //Add Listing 13.8 Changing the Selected album
-    NSIndexPath *oldCurrentAlbumIndexPath = [NSIndexPath indexPathForRow:[self currentAlbumIndex] inSection:0];
+   // NSString *name = [[self data] objectAtIndex:[indexPath row]];
+   // [[self detailViewController] setDetailItem:name];
+    //Listing 13.31 Changing the Selected Album Using Core Data
+    NSIndexPath *oldCurrentAlbumIndexPath = [NSIndexPath
+                                             indexPathForRow:[self currentAlbumIndex]
+                                             inSection:0];
     [self setCurrentAlbumIndex:[indexPath row]];
-    [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, oldCurrentAlbumIndexPath, nil] withRowAnimation:UITableViewRowAnimationNone];
-    [[self detailViewController] setPhotoAlbum:[[self data] objectAtIndex:[indexPath row]]];
-    //Add Listing 13.8 Changing the Selected album    
-    
-    //Listing 13.8NSString *name = [[self data] objectAtIndex:[indexPath row]];
-    //Listing 13.8[[self detailViewController] setDetailItem:name];
+    [tableView reloadRowsAtIndexPaths:
+     [NSArray arrayWithObjects:indexPath, oldCurrentAlbumIndexPath, nil]
+                     withRowAnimation:UITableViewRowAnimationNone];
+    PhotoAlbum *selectedAlbum = [[self data] objectAtIndex:[indexPath row]];
+    [[self detailViewController] setPhotoAlbum:selectedAlbum];
+    //Listing 13.31 Changing the Selected Album Using Core Data
 }
-
 
 
 @end

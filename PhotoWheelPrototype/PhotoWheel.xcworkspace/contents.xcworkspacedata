@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <Group
+      location = "group:"
+      name = "">
+      <FileRef
+         location = "group:_Photo.h">
+      </FileRef>
+      <FileRef
+         location = "group:_Photo.m">
+      </FileRef>
+      <FileRef
+         location = "group:_PhotoAlbum.h">
+      </FileRef>
+      <FileRef
+         location = "group:_PhotoAlbum.m">
+      </FileRef>
+      <FileRef
+         location = "group:AppDelegate.h">
+      </FileRef>
+      <FileRef
+         location = "group:AppDelegate.m">
+      </FileRef>
+      <FileRef
+         location = "group:defaultPhoto.png">
+      </FileRef>
+      <FileRef
+         location = "group:DetailViewController.h">
+      </FileRef>
+      <FileRef
+         location = "group:DetailViewController.m">
+      </FileRef>
+      <Group
+         location = "group:en.lproj"
+         name = "en.lproj">
+         <FileRef
+            location = "group:DetailViewController.xib">
+         </FileRef>
+         <FileRef
+            location = "group:InfoPlist.strings">
+         </FileRef>
+         <FileRef
+            location = "group:MasterViewController.xib">
+         </FileRef>
+      </Group>
+      <FileRef
+         location = "group:main.m">
+      </FileRef>
+      <FileRef
+         location = "group:MasterViewController.h">
+      </FileRef>
+      <FileRef
+         location = "group:MasterViewController.m">
+      </FileRef>
+      <FileRef
+         location = "group:NameEditorViewController.h">
+      </FileRef>
+      <FileRef
+         location = "group:NameEditorViewController.m">
+      </FileRef>
+      <FileRef
+         location = "group:NameEditorViewController.xib">
+      </FileRef>
+      <FileRef
+         location = "group:Photo.h">
+      </FileRef>
+      <FileRef
+         location = "group:Photo.m">
+      </FileRef>
+      <FileRef
+         location = "group:PhotoAlbum.h">
+      </FileRef>
+      <FileRef
+         location = "group:PhotoAlbum.m">
+      </FileRef>
+      <Group
+         location = "group:PhotoWheel"
+         name = "PhotoWheel">
+         <Group
+            location = "group:PhotoWheel"
+            name = "PhotoWheel">
+            <FileRef
+               location = "group:AppDelegate.h">
+            </FileRef>
+            <FileRef
+               location = "group:AppDelegate.m">
+            </FileRef>
+            <Group
+               location = "group:en.lproj"
+               name = "en.lproj">
+               <FileRef
+                  location = "group:InfoPlist.strings">
+               </FileRef>
+            </Group>
+            <FileRef
+               location = "group:main.m">
+            </FileRef>
+            <FileRef
+               location = "group:PhotoWheel-Info.plist">
+            </FileRef>
+            <FileRef
+               location = "group:PhotoWheel-Prefix.pch">
+            </FileRef>
+            <FileRef
+               location = "group:PhotoWheel.xcdatamodeld">
+            </FileRef>
+         </Group>
+         <FileRef
+            location = "group:PhotoWheel.xcodeproj">
+         </FileRef>
+      </Group>
+      <FileRef
+         location = "group:PhotoWheel.xcworkspace">
+      </FileRef>
+      <FileRef
+         location = "group:PhotoWheelPrototype-Info.plist">
+      </FileRef>
+      <FileRef
+         location = "group:PhotoWheelPrototype-Prefix.pch">
+      </FileRef>
+      <FileRef
+         location = "group:PhotoWheelPrototype.xcdatamodeld">
+      </FileRef>
+      <FileRef
+         location = "group:PhotoWheelViewCell.h">
+      </FileRef>
+      <FileRef
+         location = "group:PhotoWheelViewCell.m">
+      </FileRef>
+      <FileRef
+         location = "group:SpinGestureRecongnizer.h">
+      </FileRef>
+      <FileRef
+         location = "group:SpinGestureRecongnizer.m">
+      </FileRef>
+      <FileRef
+         location = "group:WheelView.h">
+      </FileRef>
+      <FileRef
+         location = "group:WheelView.m">
+      </FileRef>
+   </Group>
+   <FileRef
+      location = "group:../PhotoWheelPrototype.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:PhotoWheel/PhotoWheel.xcodeproj">
+   </FileRef>
+</Workspace>

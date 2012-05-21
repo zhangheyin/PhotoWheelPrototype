@@ -8,9 +8,9 @@
 
 #import "DetailViewController.h"
 #import "PhotoWheelViewCell.h"
-#import "GlobalPhotoKeys.h"
+
 @interface DetailViewController ()
-@property (assign, nonatomic) NSUInteger selectedWheelviewCellIndex; //Add Listing 13.9
+@property (assign, nonatomic) NSUInteger selectedWheelViewCellIndex;
 @property (strong, nonatomic) UIImagePickerController *imagePickerController;//Add Listing 12.4 page 278
 @property (strong, nonatomic) UIActionSheet *actionSheet; //Add Listing 12.3 page 275
 @property (strong, nonatomic) PhotoWheelViewCell *selectedPhotoWheelViewCell;//add Listing 12.1
@@ -20,7 +20,7 @@
 @end
 
 @implementation DetailViewController
-@synthesize selectedWheelviewCellIndex = _selectedWheelviewCellIndex;
+@synthesize selectedWheelViewCellIndex = _selectedWheelViewCellIndex;
 @synthesize photoAlbum = _photoAlbum;
 @synthesize imagePickerController = _imagePickerController; //Add Listing 12.4 page 278
 @synthesize actionSheet = _actionSheet;
@@ -30,9 +30,6 @@
 @synthesize detailDescriptionLabel = _detailDescriptionLabel;
 @synthesize masterPopoverController = _masterPopoverController;
 @synthesize wheelview = _wheelview;
-
-
-
 
 //Add Listing 12.4 page 278
 - (id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -145,6 +142,8 @@
         [newArray addObject:cell];
     }
     [self setData:[newArray copy]];
+    
+
 }
 
 
@@ -217,12 +216,8 @@
     NSLog(@"%s", __PRETTY_FUNCTION__);
     //ADD Listing 12.1
     [self setSelectedPhotoWheelViewCell:(PhotoWheelViewCell *)[recognizer view]]; 
-    
-    //Add Listing 13.9 Page 294
-    [self setSelectedWheelviewCellIndex:[[self data] indexOfObject:[self selectedPhotoWheelViewCell]]];
-    //Add Listing 13.9 Page 294
-    
-    //add Listing 12.2 Page 273  
+    [self setSelectedWheelViewCellIndex:[[self data] indexOfObject:[self selectedPhotoWheelViewCell]]];
+  //add Listing 12.2 Page 273  
     BOOL hasCamera = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
     
     if (hasCamera) {
@@ -301,27 +296,23 @@
     WheelViewCell *cell = [[self data] objectAtIndex:index];
     return cell;
 }
-
+//Listing 13.33 Updating the Wheel View When a New Photo Album Is Selected
+- (void)setPhotoAlbum:(PhotoAlbum *)photoAlbum
+{
+    _photoAlbum = photoAlbum;
+    UIImage *defaultPhoto = [UIImage imageNamed:@"defaultPhoto.png"];
+    for (NSUInteger index=0; index<10; index++) {
+        PhotoWheelViewCell *cell = [[self data] objectAtIndex:index];
+        Photo *photo = [[[self photoAlbum] photos] objectAtIndex:index];
+        UIImage *thumbnail = [photo thumbnailImage];
+        if (thumbnail != nil) {
+            [cell setImage:thumbnail];
+        } else {
+            [cell setImage:defaultPhoto];
+        }
+    }
+}
 #pragma mark - UIImagePickerControllerDelegate method
-- (NSString *)uuidString
-{
-    CFUUIDRef uuid = CFUUIDCreate(kCFAllocatorDefault);
-    CFStringRef uuidCFString = CFUUIDCreateString(kCFAllocatorDefault, uuid);
-    NSString *uuidString = [(__bridge NSString *)uuidCFString copy];
-    CFRelease(uuid);
-    CFRelease(uuidCFString);
-    
-    return uuidString;
-}
-
-- (NSURL *)documentsDirectory
-{
-    NSFileManager *fm = [NSFileManager defaultManager];
-    NSArray *urls = [fm URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask];
-    
-    return [urls lastObject];
-}
-
 //Add Listing 12.6 Page 281 responding to the UiimagePickerController Delegate Method
 -(void) imagePickerController:(UIImagePickerController *)picker 
 didFinishPickingMediaWithInfo:(NSDictionary *)info
@@ -345,21 +336,15 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     //Retrieve and display the image.
     UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
     [[self selectedPhotoWheelViewCell] setImage:image];
+    //Listing 13.32 Adding New Photos to a Photo Album Using Core Data Page 324
+    Photo *targetPhoto = [[[self photoAlbum] photos]
+                          objectAtIndex:[self selectedWheelViewCellIndex]];
+    [targetPhoto saveImage:image];
+    [targetPhoto setDateAdded:[NSDate date]];
+    NSError *error = nil;
+    [[[self photoAlbum] managedObjectContext] save:&error];   
+    //Listing 13.32 Adding New Photos to a Photo Album Using Core Data Page 324
     
-    //Add Listing 13.10 Page 295    
-    NSData *photoData = UIImageJPEGRepresentation(image, 0.8);
-    NSString *photoFileName = [[self uuidString] stringByAppendingPathComponent:@"jpg"];
-    [photoData writeToURL:[[self documentsDirectory] URLByAppendingPathComponent:photoFileName]
-               atomically:YES];
-    NSMutableDictionary *newPhotoEntry = [NSMutableDictionary dictionary];
-    [newPhotoEntry setObject:[NSDate date] forKey:kPhotoDateAddedKey];
-    [newPhotoEntry setObject:photoFileName forKey:kPhotoFilenameKey];
-    
-    NSMutableArray *photos = [[self photoAlbum] objectForKey:kPhotoAlbumPhotosKey];
-    [photos replaceObjectAtIndex:[self selectedWheelviewCellIndex] withObject:newPhotoEntry];
-    [[NSNotificationCenter defaultCenter] postNotificationName:kPhotoAlbumSaveNotification object:self];
-    
-     //Add Listing 13.10 Page 295   
     //ADD listing 12.7   Page 284
     if (takenWithCamera) {
         UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
@@ -367,34 +352,4 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     //ADD listing 12.7   Page 284
 }
 //Add Listing 12.6 Page 281 
-//Add Listing 13.22 Updating the Wheel View When a New Photo Album is Selected
-- (void) setPhotoAlbum:(NSMutableDictionary *)photoAlbum
-{
-    //photoAlbum_ = photoAlbum;
-    _photoAlbum = photoAlbum;
-    NSLog(@"%@", photoAlbum);
-    UIImage *defaultPhoto = [UIImage imageNamed:@"defaultPhoto.png"];
-    for (NSUInteger index = 0; index < 10; index++) {
-        PhotoWheelViewCell *nub = [[self data] objectAtIndex:index];
-        NSDictionary *photoInfo = [[[self photoAlbum] 
-                                    objectForKey:kPhotoAlbumPhotosKey] 
-                                   objectAtIndex:index];
-        
-        NSString *photoFilename = [photoInfo objectForKey:kPhotoFilenameKey];
-        NSData *imageData;
-        if (photoFilename != nil) {
-            imageData = [NSData dataWithContentsOfURL:[[self documentsDirectory] URLByAppendingPathComponent:photoFilename]];
-        } else {
-            imageData = nil;
-        }
-        if (imageData != nil) {
-            [nub setImage:[UIImage imageWithData:imageData]];
-        } else {
-            [nub setImage:defaultPhoto];
-        }
-    }
-}
-//Add Listing 13.22
-
-
 @end

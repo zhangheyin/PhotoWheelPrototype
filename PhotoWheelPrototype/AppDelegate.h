@@ -14,4 +14,9 @@
 
 @property (strong, nonatomic) UISplitViewController *splitViewController;
 
+//Listing 13.14 Core Data Code for PhotoWheelPrototypeAppDelegate.h
+@property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
+@property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+//Listing 13.14 Core Data Code for PhotoWheelPrototypeAppDelegate.h
 @end

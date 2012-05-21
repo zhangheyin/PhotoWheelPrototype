@@ -14,7 +14,9 @@
 
 
 @property (strong, nonatomic) DetailViewController *detailViewController;
-
+//Add a new managed object property to MasterViewController.h: page 307
+@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+//Add a new managed object property to MasterViewController.h: page 307
 /*ADD--- FOR DATA ---ADD*/
-@property (strong, nonatomic) NSMutableOrderedSet/* modify 288  NSMutableArray*/ *data; 
+@property (strong, nonatomic) NSMutableArray *data; 
 @end

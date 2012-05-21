@@ -24,7 +24,12 @@
 		79BEF44C1562761A000039F8 /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79BEF44A1562761A000039F8 /* DetailViewController.xib */; };
 		79BEF45A15627EA6000039F8 /* NameEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BEF45815627EA6000039F8 /* NameEditorViewController.m */; };
 		79BEF45F1562A5A2000039F8 /* NameEditorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79BEF45E1562A5A2000039F8 /* NameEditorViewController.xib */; };
-		79C2FE4E1567CEF600E03185 /* GlobalPhotoKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C2FE4D1567CEF600E03185 /* GlobalPhotoKeys.m */; };
+		CEB605691569EFC40045FA46 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEB605681569EFC40045FA46 /* CoreData.framework */; };
+		CEB6056D1569F0020045FA46 /* PhotoWheelPrototype.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CEB6056B1569F0020045FA46 /* PhotoWheelPrototype.xcdatamodeld */; };
+		CEB6059A156A147D0045FA46 /* PhotoAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB60599156A147D0045FA46 /* PhotoAlbum.m */; };
+		CEB6059D156A14990045FA46 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB6059C156A14990045FA46 /* Photo.m */; };
+		CEB605A0156A14E60045FA46 /* _Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB6059F156A14E60045FA46 /* _Photo.m */; };
+		CEB605A3156A14E60045FA46 /* _PhotoAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB605A2156A14E60045FA46 /* _PhotoAlbum.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,8 +60,16 @@
 		79BEF45715627EA6000039F8 /* NameEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NameEditorViewController.h; sourceTree = "<group>"; };
 		79BEF45815627EA6000039F8 /* NameEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NameEditorViewController.m; sourceTree = "<group>"; };
 		79BEF45E1562A5A2000039F8 /* NameEditorViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NameEditorViewController.xib; sourceTree = "<group>"; };
-		79C2FE4C1567CEF600E03185 /* GlobalPhotoKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalPhotoKeys.h; sourceTree = "<group>"; };
-		79C2FE4D1567CEF600E03185 /* GlobalPhotoKeys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalPhotoKeys.m; sourceTree = "<group>"; };
+		CEB605681569EFC40045FA46 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		CEB6056C1569F0020045FA46 /* PhotoWheelPrototype.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PhotoWheelPrototype.xcdatamodel; sourceTree = "<group>"; };
+		CEB60598156A147D0045FA46 /* PhotoAlbum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoAlbum.h; sourceTree = "<group>"; };
+		CEB60599156A147D0045FA46 /* PhotoAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoAlbum.m; sourceTree = "<group>"; };
+		CEB6059B156A14990045FA46 /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
+		CEB6059C156A14990045FA46 /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
+		CEB6059E156A14E60045FA46 /* _Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Photo.h; sourceTree = "<group>"; };
+		CEB6059F156A14E60045FA46 /* _Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Photo.m; sourceTree = "<group>"; };
+		CEB605A1156A14E60045FA46 /* _PhotoAlbum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _PhotoAlbum.h; sourceTree = "<group>"; };
+		CEB605A2156A14E60045FA46 /* _PhotoAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _PhotoAlbum.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEB605691569EFC40045FA46 /* CoreData.framework in Frameworks */,
 				7976E1FC1564D1DC007BC170 /* QuartzCore.framework in Frameworks */,
 				79BEF4301562761A000039F8 /* UIKit.framework in Frameworks */,
 				79BEF4321562761A000039F8 /* Foundation.framework in Frameworks */,
@@ -94,6 +108,7 @@
 		79BEF42E1562761A000039F8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CEB605681569EFC40045FA46 /* CoreData.framework */,
 				7976E1FB1564D1DC007BC170 /* QuartzCore.framework */,
 				79BEF42F1562761A000039F8 /* UIKit.framework */,
 				79BEF4311562761A000039F8 /* Foundation.framework */,
@@ -105,26 +120,33 @@
 		79BEF4351562761A000039F8 /* PhotoWheelPrototype */ = {
 			isa = PBXGroup;
 			children = (
-				79BEF45E1562A5A2000039F8 /* NameEditorViewController.xib */,
+				CEB6056B1569F0020045FA46 /* PhotoWheelPrototype.xcdatamodeld */,
 				79BEF43E1562761A000039F8 /* AppDelegate.h */,
-				79BEF45715627EA6000039F8 /* NameEditorViewController.h */,
+				79BEF43F1562761A000039F8 /* AppDelegate.m */,
 				7976E2131565EDAD007BC170 /* SpinGestureRecongnizer.h */,
 				7976E2141565EDAD007BC170 /* SpinGestureRecongnizer.m */,
+				CEB605A1156A14E60045FA46 /* _PhotoAlbum.h */,
+				CEB605A2156A14E60045FA46 /* _PhotoAlbum.m */,
+				CEB6059E156A14E60045FA46 /* _Photo.h */,
+				CEB6059F156A14E60045FA46 /* _Photo.m */,
+				CEB60598156A147D0045FA46 /* PhotoAlbum.h */,
+				CEB60599156A147D0045FA46 /* PhotoAlbum.m */,
+				CEB6059B156A14990045FA46 /* Photo.h */,
+				CEB6059C156A14990045FA46 /* Photo.m */,
 				7976E2091565D9AD007BC170 /* PhotoWheelViewCell.h */,
 				7976E20A1565D9AD007BC170 /* PhotoWheelViewCell.m */,
 				7976E1F215649796007BC170 /* WheelView.h */,
 				7976E1F315649796007BC170 /* WheelView.m */,
+				79BEF45715627EA6000039F8 /* NameEditorViewController.h */,
 				79BEF45815627EA6000039F8 /* NameEditorViewController.m */,
-				79BEF43F1562761A000039F8 /* AppDelegate.m */,
 				79BEF4411562761A000039F8 /* MasterViewController.h */,
 				79BEF4421562761A000039F8 /* MasterViewController.m */,
 				79BEF4441562761A000039F8 /* DetailViewController.h */,
 				79BEF4451562761A000039F8 /* DetailViewController.m */,
+				79BEF45E1562A5A2000039F8 /* NameEditorViewController.xib */,
 				79BEF4471562761A000039F8 /* MasterViewController.xib */,
 				79BEF44A1562761A000039F8 /* DetailViewController.xib */,
 				79BEF4361562761A000039F8 /* Supporting Files */,
-				79C2FE4C1567CEF600E03185 /* GlobalPhotoKeys.h */,
-				79C2FE4D1567CEF600E03185 /* GlobalPhotoKeys.m */,
 			);
 			path = PhotoWheelPrototype;
 			sourceTree = "<group>";
@@ -214,7 +236,11 @@
 				7976E1F415649796007BC170 /* WheelView.m in Sources */,
 				7976E20B1565D9AD007BC170 /* PhotoWheelViewCell.m in Sources */,
 				7976E2151565EDAD007BC170 /* SpinGestureRecongnizer.m in Sources */,
-				79C2FE4E1567CEF600E03185 /* GlobalPhotoKeys.m in Sources */,
+				CEB6056D1569F0020045FA46 /* PhotoWheelPrototype.xcdatamodeld in Sources */,
+				CEB6059A156A147D0045FA46 /* PhotoAlbum.m in Sources */,
+				CEB6059D156A14990045FA46 /* Photo.m in Sources */,
+				CEB605A0156A14E60045FA46 /* _Photo.m in Sources */,
+				CEB605A3156A14E60045FA46 /* _PhotoAlbum.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,6 +365,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		CEB6056B1569F0020045FA46 /* PhotoWheelPrototype.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				CEB6056C1569F0020045FA46 /* PhotoWheelPrototype.xcdatamodel */,
+			);
+			currentVersion = CEB6056C1569F0020045FA46 /* PhotoWheelPrototype.xcdatamodel */;
+			path = PhotoWheelPrototype.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 79BEF42215627619000039F8 /* Project object */;
 }
