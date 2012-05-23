@@ -7,23 +7,20 @@
 //
 
 #import "PhotoWheelViewCell.h"
-#import <QuartzCore/QuartzCore.h>
 @implementation PhotoWheelViewCell
+@synthesize imageView = _imageView;
+@synthesize label = _label;
 
-//Listing 10.13
-- (void) setImage:(UIImage *)newImage
++ (PhotoWheelViewCell *)photoWheelViewCell
 {
-    //add the image to the layer's contents.
-    CALayer *layer = [self layer];
-    id imageRef = (__bridge id)[newImage CGImage];
-    [layer setContents:imageRef];
-    
-    //add border and shadow
-    [layer setBorderColor:[UIColor colorWithWhite:1.f alpha:1.f].CGColor];
-    [layer setBorderWidth:5.f];
-    [layer setShadowOffset:CGSizeMake(0, 3)];
-    [layer setShadowOpacity:.7f];
-    [layer setShouldRasterize:YES];
-}	
-
+    NSString *nibName = NSStringFromClass([self class]);
+    UINib *nib = [UINib nibWithNibName:nibName bundle:nil];
+    NSArray *nibObjects = [nib instantiateWithOwner:nil options:nil];
+    // Verify that the top-level object is in fact of the correct type.
+    NSAssert2([nibObjects count] > 0 &&
+              [[nibObjects objectAtIndex:0] isKindOfClass:[self class]],
+              @"Nib '%@' does not contain top-level view of type %@.",
+              nibName, nibName);
+    return [nibObjects objectAtIndex:0];
+}
 @end

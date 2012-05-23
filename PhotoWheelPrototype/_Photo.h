@@ -17,6 +17,6 @@
 @property (nonatomic, retain) NSData * originalImageData;
 @property (nonatomic, retain) NSData * thumbnailImageData;
 @property (nonatomic, retain) NSData * largeImageData;
-@property (nonatomic, retain) _PhotoAlbum *photoalbum;
+@property (nonatomic, retain) _PhotoAlbum *photoAlbum;
 
 @end

@@ -7,65 +7,13 @@
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "PhotoWheel/PhotoWheel/WheelView.m"
-         timestampString = "359367021.114749"
+         filePath = "PhotoWheelPrototype/Photo.m"
+         timestampString = "359392944.635259"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "79"
-         endingLineNumber = "79"
-         landmarkName = "-numberOfCells"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "PhotoWheel/PhotoWheel/PhotoAlbumsViewController.m"
-         timestampString = "359367623.671401"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "105"
-         endingLineNumber = "105"
-         landmarkName = "-wheelViewNumberOfVisibleCells:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "PhotoWheel/PhotoWheel/PhotoAlbumsViewController.m"
-         timestampString = "359367863.443867"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "35"
-         endingLineNumber = "35"
-         landmarkName = "-addPhotoAlbum:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "PhotoWheel/PhotoWheel/PhotoAlbumsViewController.m"
-         timestampString = "359367903.56894"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "109"
-         endingLineNumber = "109"
-         landmarkName = "-wheelViewNumberOfCells:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "PhotoWheel/PhotoWheel/PhotoAlbumsViewController.m"
-         timestampString = "359367905.833288"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "116"
-         endingLineNumber = "116"
-         landmarkName = "-wheelView:cellAtIndex:"
+         startingLineNumber = "83"
+         endingLineNumber = "83"
+         landmarkName = "-saveImage:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

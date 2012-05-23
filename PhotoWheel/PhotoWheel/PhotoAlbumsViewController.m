@@ -9,11 +9,13 @@
 #import "PhotoWheelViewCell.h" // 1
 #import "PhotoAlbum.h"
 #import "Photo.h"
+#import "PhotoAlbumViewController.h"
 @interface PhotoAlbumsViewController () // 2
 @property (nonatomic, strong)
 NSFetchedResultsController *fetchedResultsController; // 3
 @end
 @implementation PhotoAlbumsViewController
+@synthesize photoAlbumViewController  = _photoAlbumViewController;
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize wheelView = _wheelView; // 4
 @synthesize fetchedResultsController = _fetchedResultsController;
@@ -117,8 +119,8 @@ NSFetchedResultsController *fetchedResultsController; // 3
 {
     PhotoWheelViewCell *cell = [wheelView dequeueReusableCell]; // 23
     if (!cell) {
-        cell = [[PhotoWheelViewCell alloc]
-                initWithFrame:CGRectMake(0, 0, 75, 75)]; // 24
+       cell = [PhotoWheelViewCell photoWheelViewCell]; // 1 cell = [[PhotoWheelViewCell alloc]
+             //   initWithFrame:CGRectMake(0, 0, 75, 75)]; // 24
     }
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
     PhotoAlbum *photoAlbum = [[self fetchedResultsController]
@@ -128,11 +130,30 @@ NSFetchedResultsController *fetchedResultsController; // 3
     if (image == nil) {
         image = [UIImage imageNamed:@"defaultPhoto.png"]; // 27
     }
-    [cell setImage:image]; // 28
+    //[cell setImage:image]; // 28
+    [[cell imageView] setImage:image]; // 2
+    [[cell label] setText:[photoAlbum name]]; // 3
     return cell; // 29
 }
 - (void)wheelView:(WheelView *)wheelView
 didSelectCellAtIndex:(NSInteger)index // 30
 {
+    // Retrieve the photo album from the fetched results.
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index
+                                                inSection:0]; // 1
+    PhotoAlbum *photoAlbum = nil;
+    // index = -1 means no selected cell and nothing to retrieve
+    // from the fetched results.
+    if (index >= 0) {
+        photoAlbum = [[self fetchedResultsController] objectAtIndexPath:indexPath];
+    }
+    // Pass the current managed object context and object id for the
+    // photo album to the photo album view controller.
+    PhotoAlbumViewController *photoAlbumViewController =
+    [self photoAlbumViewController];
+    [photoAlbumViewController
+     setManagedObjectContext:[self managedObjectContext]]; // 2
+    [photoAlbumViewController setObjectID:[photoAlbum objectID]]; // 3
+    [photoAlbumViewController reload]; // 4
 }
 @end

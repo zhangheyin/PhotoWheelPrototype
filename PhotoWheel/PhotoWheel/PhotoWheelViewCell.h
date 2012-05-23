@@ -7,7 +7,8 @@
 //
 
 #import "WheelView.h"
-
 @interface PhotoWheelViewCell : WheelViewCell
-- (void) setImage:(UIImage *)newImage;
+@property (nonatomic, strong) IBOutlet UIImageView *imageView;
+@property (nonatomic, strong) IBOutlet UILabel *label;
++ (PhotoWheelViewCell *)photoWheelViewCell;
 @end

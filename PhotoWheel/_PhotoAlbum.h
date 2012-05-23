@@ -2,8 +2,8 @@
 //  _PhotoAlbum.h
 //  PhotoWheelPrototype
 //
-//  Created by Lion User on 21/05/2012.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Created by Kirby Turner on 9/24/11.
+//  Copyright (c) 2011 White Peak Software Inc. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

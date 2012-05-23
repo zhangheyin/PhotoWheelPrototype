@@ -28,6 +28,8 @@
     [storyboard instantiateViewControllerWithIdentifier:@"PhotoAlbumScene"];
     [self addChildViewController:photoAlbumScene];
     [photoAlbumScene didMoveToParentViewController:self];
+    
+    [photoAlbumsScene setPhotoAlbumViewController:photoAlbumScene];
 }
 
 
