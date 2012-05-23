@@ -13,7 +13,6 @@
 		CE25A0AB156A544F00468A99 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE25A0AA156A544F00468A99 /* CoreData.framework */; };
 		CE25A0B1156A544F00468A99 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE25A0AF156A544F00468A99 /* InfoPlist.strings */; };
 		CE25A0B3156A544F00468A99 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CE25A0B2156A544F00468A99 /* main.m */; };
-		CE25A0B7156A544F00468A99 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CE25A0B6156A544F00468A99 /* AppDelegate.m */; };
 		CE25A0C1156A54E100468A99 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE25A0C0156A54E100468A99 /* MainStoryboard.storyboard */; };
 		CE25A0DB156A59B700468A99 /* addphoto.png in Resources */ = {isa = PBXBuildFile; fileRef = CE25A0C3156A59B700468A99 /* addphoto.png */; };
 		CE25A0DC156A59B700468A99 /* background-landscape-left-grooved.png in Resources */ = {isa = PBXBuildFile; fileRef = CE25A0C4156A59B700468A99 /* background-landscape-left-grooved.png */; };
@@ -39,26 +38,29 @@
 		CE25A0F0156A59B700468A99 /* stack-viewer-bg-landscape-right.png in Resources */ = {isa = PBXBuildFile; fileRef = CE25A0D8156A59B700468A99 /* stack-viewer-bg-landscape-right.png */; };
 		CE25A0F1156A59B700468A99 /* stack-viewer-bg-portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = CE25A0D9156A59B700468A99 /* stack-viewer-bg-portrait.png */; };
 		CE25A0F2156A59B700468A99 /* stack-viewer-shadow.png in Resources */ = {isa = PBXBuildFile; fileRef = CE25A0DA156A59B700468A99 /* stack-viewer-shadow.png */; };
-		CE25A105156B226C00468A99 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE25A104156B226C00468A99 /* AboutViewController.m */; };
-		CE25A109156B256F00468A99 /* CustomPushSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = CE25A108156B256F00468A99 /* CustomPushSegue.m */; };
-		CE25A10C156B25F700468A99 /* UIView+PWCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = CE25A10B156B25F700468A99 /* UIView+PWCategory.m */; };
 		CE25A10E156B262700468A99 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE25A10D156B262700468A99 /* QuartzCore.framework */; };
-		CE25A111156B31F800468A99 /* CustomNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE25A110156B31F800468A99 /* CustomNavigationController.m */; };
-		CE25A114156B346A00468A99 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE25A113156B346900468A99 /* MainViewController.m */; };
-		CE25A117156B34AB00468A99 /* PhotoAlbumsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE25A116156B34AB00468A99 /* PhotoAlbumsViewController.m */; };
-		CE25A11A156B364D00468A99 /* PhotoAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE25A119156B364D00468A99 /* PhotoAlbumViewController.m */; };
-		CE81F7ED156B7C7800623B5C /* PhotoWheelViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE81F7E5156B6F0A00623B5C /* PhotoWheelViewCell.m */; };
-		CE81F7EE156B7C9200623B5C /* WheelView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE81F7E9156B6F0A00623B5C /* WheelView.m */; };
-		CE81F7EF156B7E0800623B5C /* SpinGestureRecongnizer.m in Sources */ = {isa = PBXBuildFile; fileRef = CE81F7E7156B6F0A00623B5C /* SpinGestureRecongnizer.m */; };
-		CECE6D7E156BA79600837B3F /* ClearToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE6D7D156BA79500837B3F /* ClearToolbar.m */; };
+		CE39D9EE156CC663003F8D76 /* _Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = CE39D9C8156CC65E003F8D76 /* _Photo.m */; };
+		CE39D9EF156CC663003F8D76 /* _PhotoAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = CE39D9CA156CC65E003F8D76 /* _PhotoAlbum.m */; };
+		CE39D9F0156CC663003F8D76 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE39D9CC156CC65E003F8D76 /* AboutViewController.m */; };
+		CE39D9F1156CC663003F8D76 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CE39D9CE156CC65E003F8D76 /* AppDelegate.m */; };
+		CE39D9F2156CC663003F8D76 /* ClearToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = CE39D9D0156CC65F003F8D76 /* ClearToolbar.m */; };
+		CE39D9F3156CC663003F8D76 /* CustomNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE39D9D2156CC65F003F8D76 /* CustomNavigationController.m */; };
+		CE39D9F4156CC663003F8D76 /* CustomPushSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = CE39D9D4156CC65F003F8D76 /* CustomPushSegue.m */; };
+		CE39D9F5156CC663003F8D76 /* GridView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE39D9D6156CC65F003F8D76 /* GridView.m */; };
+		CE39D9F6156CC663003F8D76 /* ImageGridViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE39D9D8156CC65F003F8D76 /* ImageGridViewCell.m */; };
+		CE39D9F8156CC663003F8D76 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE39D9DB156CC65F003F8D76 /* MainViewController.m */; };
+		CE39D9F9156CC663003F8D76 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = CE39D9DD156CC65F003F8D76 /* Photo.m */; };
+		CE39D9FA156CC663003F8D76 /* PhotoAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = CE39D9DF156CC660003F8D76 /* PhotoAlbum.m */; };
+		CE39D9FB156CC663003F8D76 /* PhotoAlbumsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE39D9E1156CC660003F8D76 /* PhotoAlbumsViewController.m */; };
+		CE39D9FC156CC663003F8D76 /* PhotoAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE39D9E3156CC660003F8D76 /* PhotoAlbumViewController.m */; };
+		CE39D9FD156CC663003F8D76 /* PhotoBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE39D9E5156CC660003F8D76 /* PhotoBrowserViewController.m */; };
+		CE39D9FE156CC663003F8D76 /* PhotoWheelViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE39D9E7156CC661003F8D76 /* PhotoWheelViewCell.m */; };
+		CE39D9FF156CC663003F8D76 /* SpinGestureRecongnizer.m in Sources */ = {isa = PBXBuildFile; fileRef = CE39D9E9156CC661003F8D76 /* SpinGestureRecongnizer.m */; };
+		CE39DA00156CC663003F8D76 /* UIView+PWCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = CE39D9EB156CC662003F8D76 /* UIView+PWCategory.m */; };
+		CE39DA01156CC663003F8D76 /* WheelView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE39D9ED156CC662003F8D76 /* WheelView.m */; };
+		CE39DA04156CD1EA003F8D76 /* PhotoBrowserPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE39DA03156CD1EA003F8D76 /* PhotoBrowserPhotoView.m */; };
 		CEFCCA49156BD4D400B2B75B /* PhotoWheelViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEFCCA48156BD4D400B2B75B /* PhotoWheelViewCell.xib */; };
-		CEFCCA4D156BDD2100B2B75B /* GridView.m in Sources */ = {isa = PBXBuildFile; fileRef = CEFCCA4C156BDD2100B2B75B /* GridView.m */; };
-		CEFCCA50156BE04400B2B75B /* ImageGridViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CEFCCA4F156BE04400B2B75B /* ImageGridViewCell.m */; };
 		CEFCCA66156BE8C500B2B75B /* PhotoWheel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CEFCCA64156BE8C500B2B75B /* PhotoWheel.xcdatamodeld */; };
-		CEFCCA6F156BE95900B2B75B /* _Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = CEFCCA6C156BE95900B2B75B /* _Photo.m */; };
-		CEFCCA70156BE95900B2B75B /* _PhotoAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = CEFCCA6E156BE95900B2B75B /* _PhotoAlbum.m */; };
-		CEFCCA75156BE99800B2B75B /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = CEFCCA72156BE99800B2B75B /* Photo.m */; };
-		CEFCCA76156BE99800B2B75B /* PhotoAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = CEFCCA74156BE99800B2B75B /* PhotoAlbum.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,8 +73,6 @@
 		CE25A0B0156A544F00468A99 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CE25A0B2156A544F00468A99 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		CE25A0B4156A544F00468A99 /* PhotoWheel-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PhotoWheel-Prefix.pch"; sourceTree = "<group>"; };
-		CE25A0B5156A544F00468A99 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		CE25A0B6156A544F00468A99 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		CE25A0C0156A54E100468A99 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
 		CE25A0C3156A59B700468A99 /* addphoto.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addphoto.png; sourceTree = "<group>"; };
 		CE25A0C4156A59B700468A99 /* background-landscape-left-grooved.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background-landscape-left-grooved.png"; sourceTree = "<group>"; };
@@ -98,43 +98,49 @@
 		CE25A0D8156A59B700468A99 /* stack-viewer-bg-landscape-right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "stack-viewer-bg-landscape-right.png"; sourceTree = "<group>"; };
 		CE25A0D9156A59B700468A99 /* stack-viewer-bg-portrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "stack-viewer-bg-portrait.png"; sourceTree = "<group>"; };
 		CE25A0DA156A59B700468A99 /* stack-viewer-shadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "stack-viewer-shadow.png"; sourceTree = "<group>"; };
-		CE25A103156B226C00468A99 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
-		CE25A104156B226C00468A99 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
-		CE25A107156B256F00468A99 /* CustomPushSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomPushSegue.h; sourceTree = "<group>"; };
-		CE25A108156B256F00468A99 /* CustomPushSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomPushSegue.m; sourceTree = "<group>"; };
-		CE25A10A156B25F700468A99 /* UIView+PWCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+PWCategory.h"; sourceTree = "<group>"; };
-		CE25A10B156B25F700468A99 /* UIView+PWCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+PWCategory.m"; sourceTree = "<group>"; };
 		CE25A10D156B262700468A99 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		CE25A10F156B31F800468A99 /* CustomNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomNavigationController.h; sourceTree = "<group>"; };
-		CE25A110156B31F800468A99 /* CustomNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomNavigationController.m; sourceTree = "<group>"; };
-		CE25A112156B346900468A99 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
-		CE25A113156B346900468A99 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
-		CE25A115156B34AB00468A99 /* PhotoAlbumsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoAlbumsViewController.h; sourceTree = "<group>"; };
-		CE25A116156B34AB00468A99 /* PhotoAlbumsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoAlbumsViewController.m; sourceTree = "<group>"; };
-		CE25A118156B364D00468A99 /* PhotoAlbumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoAlbumViewController.h; sourceTree = "<group>"; };
-		CE25A119156B364D00468A99 /* PhotoAlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoAlbumViewController.m; sourceTree = "<group>"; };
-		CE81F7E4156B6F0A00623B5C /* PhotoWheelViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoWheelViewCell.h; sourceTree = "<group>"; };
-		CE81F7E5156B6F0A00623B5C /* PhotoWheelViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoWheelViewCell.m; sourceTree = "<group>"; };
-		CE81F7E6156B6F0A00623B5C /* SpinGestureRecongnizer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpinGestureRecongnizer.h; sourceTree = "<group>"; };
-		CE81F7E7156B6F0A00623B5C /* SpinGestureRecongnizer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SpinGestureRecongnizer.m; sourceTree = "<group>"; };
-		CE81F7E8156B6F0A00623B5C /* WheelView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WheelView.h; sourceTree = "<group>"; };
-		CE81F7E9156B6F0A00623B5C /* WheelView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WheelView.m; sourceTree = "<group>"; };
-		CECE6D7C156BA79500837B3F /* ClearToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClearToolbar.h; sourceTree = "<group>"; };
-		CECE6D7D156BA79500837B3F /* ClearToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClearToolbar.m; sourceTree = "<group>"; };
+		CE39D9C7156CC65E003F8D76 /* _Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Photo.h; sourceTree = "<group>"; };
+		CE39D9C8156CC65E003F8D76 /* _Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Photo.m; sourceTree = "<group>"; };
+		CE39D9C9156CC65E003F8D76 /* _PhotoAlbum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _PhotoAlbum.h; sourceTree = "<group>"; };
+		CE39D9CA156CC65E003F8D76 /* _PhotoAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _PhotoAlbum.m; sourceTree = "<group>"; };
+		CE39D9CB156CC65E003F8D76 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
+		CE39D9CC156CC65E003F8D76 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
+		CE39D9CD156CC65E003F8D76 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		CE39D9CE156CC65E003F8D76 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		CE39D9CF156CC65E003F8D76 /* ClearToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClearToolbar.h; sourceTree = "<group>"; };
+		CE39D9D0156CC65F003F8D76 /* ClearToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClearToolbar.m; sourceTree = "<group>"; };
+		CE39D9D1156CC65F003F8D76 /* CustomNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomNavigationController.h; sourceTree = "<group>"; };
+		CE39D9D2156CC65F003F8D76 /* CustomNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomNavigationController.m; sourceTree = "<group>"; };
+		CE39D9D3156CC65F003F8D76 /* CustomPushSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomPushSegue.h; sourceTree = "<group>"; };
+		CE39D9D4156CC65F003F8D76 /* CustomPushSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomPushSegue.m; sourceTree = "<group>"; };
+		CE39D9D5156CC65F003F8D76 /* GridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GridView.h; sourceTree = "<group>"; };
+		CE39D9D6156CC65F003F8D76 /* GridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GridView.m; sourceTree = "<group>"; };
+		CE39D9D7156CC65F003F8D76 /* ImageGridViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageGridViewCell.h; sourceTree = "<group>"; };
+		CE39D9D8156CC65F003F8D76 /* ImageGridViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageGridViewCell.m; sourceTree = "<group>"; };
+		CE39D9DA156CC65F003F8D76 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		CE39D9DB156CC65F003F8D76 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		CE39D9DC156CC65F003F8D76 /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
+		CE39D9DD156CC65F003F8D76 /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
+		CE39D9DE156CC660003F8D76 /* PhotoAlbum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoAlbum.h; sourceTree = "<group>"; };
+		CE39D9DF156CC660003F8D76 /* PhotoAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoAlbum.m; sourceTree = "<group>"; };
+		CE39D9E0156CC660003F8D76 /* PhotoAlbumsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoAlbumsViewController.h; sourceTree = "<group>"; };
+		CE39D9E1156CC660003F8D76 /* PhotoAlbumsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoAlbumsViewController.m; sourceTree = "<group>"; };
+		CE39D9E2156CC660003F8D76 /* PhotoAlbumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoAlbumViewController.h; sourceTree = "<group>"; };
+		CE39D9E3156CC660003F8D76 /* PhotoAlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoAlbumViewController.m; sourceTree = "<group>"; };
+		CE39D9E4156CC660003F8D76 /* PhotoBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoBrowserViewController.h; sourceTree = "<group>"; };
+		CE39D9E5156CC660003F8D76 /* PhotoBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoBrowserViewController.m; sourceTree = "<group>"; };
+		CE39D9E6156CC661003F8D76 /* PhotoWheelViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoWheelViewCell.h; sourceTree = "<group>"; };
+		CE39D9E7156CC661003F8D76 /* PhotoWheelViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoWheelViewCell.m; sourceTree = "<group>"; };
+		CE39D9E8156CC661003F8D76 /* SpinGestureRecongnizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpinGestureRecongnizer.h; sourceTree = "<group>"; };
+		CE39D9E9156CC661003F8D76 /* SpinGestureRecongnizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpinGestureRecongnizer.m; sourceTree = "<group>"; };
+		CE39D9EA156CC662003F8D76 /* UIView+PWCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+PWCategory.h"; sourceTree = "<group>"; };
+		CE39D9EB156CC662003F8D76 /* UIView+PWCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+PWCategory.m"; sourceTree = "<group>"; };
+		CE39D9EC156CC662003F8D76 /* WheelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WheelView.h; sourceTree = "<group>"; };
+		CE39D9ED156CC662003F8D76 /* WheelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WheelView.m; sourceTree = "<group>"; };
+		CE39DA02156CD1EA003F8D76 /* PhotoBrowserPhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoBrowserPhotoView.h; sourceTree = "<group>"; };
+		CE39DA03156CD1EA003F8D76 /* PhotoBrowserPhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoBrowserPhotoView.m; sourceTree = "<group>"; };
 		CEFCCA48156BD4D400B2B75B /* PhotoWheelViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoWheelViewCell.xib; sourceTree = "<group>"; };
-		CEFCCA4B156BDD2100B2B75B /* GridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GridView.h; sourceTree = "<group>"; };
-		CEFCCA4C156BDD2100B2B75B /* GridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GridView.m; sourceTree = "<group>"; };
-		CEFCCA4E156BE04400B2B75B /* ImageGridViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageGridViewCell.h; sourceTree = "<group>"; };
-		CEFCCA4F156BE04400B2B75B /* ImageGridViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageGridViewCell.m; sourceTree = "<group>"; };
 		CEFCCA65156BE8C500B2B75B /* PhotoWheel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PhotoWheel.xcdatamodel; sourceTree = "<group>"; };
-		CEFCCA6B156BE95900B2B75B /* _Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _Photo.h; path = ../_Photo.h; sourceTree = "<group>"; };
-		CEFCCA6C156BE95900B2B75B /* _Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = _Photo.m; path = ../_Photo.m; sourceTree = "<group>"; };
-		CEFCCA6D156BE95900B2B75B /* _PhotoAlbum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _PhotoAlbum.h; path = ../_PhotoAlbum.h; sourceTree = "<group>"; };
-		CEFCCA6E156BE95900B2B75B /* _PhotoAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = _PhotoAlbum.m; path = ../_PhotoAlbum.m; sourceTree = "<group>"; };
-		CEFCCA71156BE99800B2B75B /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
-		CEFCCA72156BE99800B2B75B /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
-		CEFCCA73156BE99800B2B75B /* PhotoAlbum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoAlbum.h; sourceTree = "<group>"; };
-		CEFCCA74156BE99800B2B75B /* PhotoAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoAlbum.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,47 +191,51 @@
 		CE25A0AC156A544F00468A99 /* PhotoWheel */ = {
 			isa = PBXGroup;
 			children = (
-				CEFCCA71156BE99800B2B75B /* Photo.h */,
-				CEFCCA72156BE99800B2B75B /* Photo.m */,
-				CEFCCA73156BE99800B2B75B /* PhotoAlbum.h */,
-				CEFCCA74156BE99800B2B75B /* PhotoAlbum.m */,
-				CEFCCA6B156BE95900B2B75B /* _Photo.h */,
-				CEFCCA6C156BE95900B2B75B /* _Photo.m */,
-				CEFCCA6D156BE95900B2B75B /* _PhotoAlbum.h */,
-				CEFCCA6E156BE95900B2B75B /* _PhotoAlbum.m */,
-				CEFCCA4E156BE04400B2B75B /* ImageGridViewCell.h */,
-				CEFCCA4F156BE04400B2B75B /* ImageGridViewCell.m */,
-				CECE6D7C156BA79500837B3F /* ClearToolbar.h */,
-				CECE6D7D156BA79500837B3F /* ClearToolbar.m */,
-				CE81F7E4156B6F0A00623B5C /* PhotoWheelViewCell.h */,
-				CE81F7E5156B6F0A00623B5C /* PhotoWheelViewCell.m */,
+				CE39DA02156CD1EA003F8D76 /* PhotoBrowserPhotoView.h */,
+				CE39DA03156CD1EA003F8D76 /* PhotoBrowserPhotoView.m */,
+				CE39D9C7156CC65E003F8D76 /* _Photo.h */,
+				CE39D9C8156CC65E003F8D76 /* _Photo.m */,
+				CE39D9C9156CC65E003F8D76 /* _PhotoAlbum.h */,
+				CE39D9CA156CC65E003F8D76 /* _PhotoAlbum.m */,
+				CE39D9CB156CC65E003F8D76 /* AboutViewController.h */,
+				CE39D9CC156CC65E003F8D76 /* AboutViewController.m */,
+				CE39D9CD156CC65E003F8D76 /* AppDelegate.h */,
+				CE39D9CE156CC65E003F8D76 /* AppDelegate.m */,
+				CE39D9CF156CC65E003F8D76 /* ClearToolbar.h */,
+				CE39D9D0156CC65F003F8D76 /* ClearToolbar.m */,
+				CE39D9D1156CC65F003F8D76 /* CustomNavigationController.h */,
+				CE39D9D2156CC65F003F8D76 /* CustomNavigationController.m */,
+				CE39D9D3156CC65F003F8D76 /* CustomPushSegue.h */,
+				CE39D9D4156CC65F003F8D76 /* CustomPushSegue.m */,
+				CE39D9D5156CC65F003F8D76 /* GridView.h */,
+				CE39D9D6156CC65F003F8D76 /* GridView.m */,
+				CE39D9D7156CC65F003F8D76 /* ImageGridViewCell.h */,
+				CE39D9D8156CC65F003F8D76 /* ImageGridViewCell.m */,
+				CE39D9DA156CC65F003F8D76 /* MainViewController.h */,
+				CE39D9DB156CC65F003F8D76 /* MainViewController.m */,
+				CE39D9DC156CC65F003F8D76 /* Photo.h */,
+				CE39D9DD156CC65F003F8D76 /* Photo.m */,
+				CE39D9DE156CC660003F8D76 /* PhotoAlbum.h */,
+				CE39D9DF156CC660003F8D76 /* PhotoAlbum.m */,
+				CE39D9E0156CC660003F8D76 /* PhotoAlbumsViewController.h */,
+				CE39D9E1156CC660003F8D76 /* PhotoAlbumsViewController.m */,
+				CE39D9E2156CC660003F8D76 /* PhotoAlbumViewController.h */,
+				CE39D9E3156CC660003F8D76 /* PhotoAlbumViewController.m */,
+				CE39D9E4156CC660003F8D76 /* PhotoBrowserViewController.h */,
+				CE39D9E5156CC660003F8D76 /* PhotoBrowserViewController.m */,
+				CE39D9E6156CC661003F8D76 /* PhotoWheelViewCell.h */,
+				CE39D9E7156CC661003F8D76 /* PhotoWheelViewCell.m */,
+				CE39D9E8156CC661003F8D76 /* SpinGestureRecongnizer.h */,
+				CE39D9E9156CC661003F8D76 /* SpinGestureRecongnizer.m */,
+				CE39D9EA156CC662003F8D76 /* UIView+PWCategory.h */,
+				CE39D9EB156CC662003F8D76 /* UIView+PWCategory.m */,
+				CE39D9EC156CC662003F8D76 /* WheelView.h */,
+				CE39D9ED156CC662003F8D76 /* WheelView.m */,
 				CEFCCA48156BD4D400B2B75B /* PhotoWheelViewCell.xib */,
-				CE81F7E6156B6F0A00623B5C /* SpinGestureRecongnizer.h */,
-				CE81F7E7156B6F0A00623B5C /* SpinGestureRecongnizer.m */,
-				CE81F7E8156B6F0A00623B5C /* WheelView.h */,
-				CE81F7E9156B6F0A00623B5C /* WheelView.m */,
-				CE25A10F156B31F800468A99 /* CustomNavigationController.h */,
-				CE25A110156B31F800468A99 /* CustomNavigationController.m */,
-				CE25A112156B346900468A99 /* MainViewController.h */,
-				CE25A113156B346900468A99 /* MainViewController.m */,
-				CE25A115156B34AB00468A99 /* PhotoAlbumsViewController.h */,
-				CE25A116156B34AB00468A99 /* PhotoAlbumsViewController.m */,
-				CE25A103156B226C00468A99 /* AboutViewController.h */,
-				CE25A104156B226C00468A99 /* AboutViewController.m */,
-				CE25A0C0156A54E100468A99 /* MainStoryboard.storyboard */,
-				CE25A0B5156A544F00468A99 /* AppDelegate.h */,
-				CE25A0B6156A544F00468A99 /* AppDelegate.m */,
-				CE25A107156B256F00468A99 /* CustomPushSegue.h */,
 				CEFCCA64156BE8C500B2B75B /* PhotoWheel.xcdatamodeld */,
-				CE25A108156B256F00468A99 /* CustomPushSegue.m */,
-				CE25A10A156B25F700468A99 /* UIView+PWCategory.h */,
-				CE25A10B156B25F700468A99 /* UIView+PWCategory.m */,
-				CE25A118156B364D00468A99 /* PhotoAlbumViewController.h */,
-				CE25A119156B364D00468A99 /* PhotoAlbumViewController.m */,
+				CE25A0C0156A54E100468A99 /* MainStoryboard.storyboard */,
 				CE25A0C2156A59B700468A99 /* images */,
 				CE25A0AD156A544F00468A99 /* Supporting Files */,
-				CEFCCA4B156BDD2100B2B75B /* GridView.h */,
-				CEFCCA4C156BDD2100B2B75B /* GridView.m */,
 			);
 			path = PhotoWheel;
 			sourceTree = "<group>";
@@ -359,26 +369,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE81F7EF156B7E0800623B5C /* SpinGestureRecongnizer.m in Sources */,
-				CE81F7EE156B7C9200623B5C /* WheelView.m in Sources */,
-				CE81F7ED156B7C7800623B5C /* PhotoWheelViewCell.m in Sources */,
 				CE25A0B3156A544F00468A99 /* main.m in Sources */,
-				CE25A0B7156A544F00468A99 /* AppDelegate.m in Sources */,
-				CE25A105156B226C00468A99 /* AboutViewController.m in Sources */,
-				CE25A109156B256F00468A99 /* CustomPushSegue.m in Sources */,
-				CE25A10C156B25F700468A99 /* UIView+PWCategory.m in Sources */,
-				CE25A111156B31F800468A99 /* CustomNavigationController.m in Sources */,
-				CE25A114156B346A00468A99 /* MainViewController.m in Sources */,
-				CE25A117156B34AB00468A99 /* PhotoAlbumsViewController.m in Sources */,
-				CE25A11A156B364D00468A99 /* PhotoAlbumViewController.m in Sources */,
-				CECE6D7E156BA79600837B3F /* ClearToolbar.m in Sources */,
-				CEFCCA4D156BDD2100B2B75B /* GridView.m in Sources */,
-				CEFCCA50156BE04400B2B75B /* ImageGridViewCell.m in Sources */,
 				CEFCCA66156BE8C500B2B75B /* PhotoWheel.xcdatamodeld in Sources */,
-				CEFCCA6F156BE95900B2B75B /* _Photo.m in Sources */,
-				CEFCCA70156BE95900B2B75B /* _PhotoAlbum.m in Sources */,
-				CEFCCA75156BE99800B2B75B /* Photo.m in Sources */,
-				CEFCCA76156BE99800B2B75B /* PhotoAlbum.m in Sources */,
+				CE39D9EE156CC663003F8D76 /* _Photo.m in Sources */,
+				CE39D9EF156CC663003F8D76 /* _PhotoAlbum.m in Sources */,
+				CE39D9F0156CC663003F8D76 /* AboutViewController.m in Sources */,
+				CE39D9F1156CC663003F8D76 /* AppDelegate.m in Sources */,
+				CE39D9F2156CC663003F8D76 /* ClearToolbar.m in Sources */,
+				CE39D9F3156CC663003F8D76 /* CustomNavigationController.m in Sources */,
+				CE39D9F4156CC663003F8D76 /* CustomPushSegue.m in Sources */,
+				CE39D9F5156CC663003F8D76 /* GridView.m in Sources */,
+				CE39D9F6156CC663003F8D76 /* ImageGridViewCell.m in Sources */,
+				CE39D9F8156CC663003F8D76 /* MainViewController.m in Sources */,
+				CE39D9F9156CC663003F8D76 /* Photo.m in Sources */,
+				CE39D9FA156CC663003F8D76 /* PhotoAlbum.m in Sources */,
+				CE39D9FB156CC663003F8D76 /* PhotoAlbumsViewController.m in Sources */,
+				CE39D9FC156CC663003F8D76 /* PhotoAlbumViewController.m in Sources */,
+				CE39D9FD156CC663003F8D76 /* PhotoBrowserViewController.m in Sources */,
+				CE39D9FE156CC663003F8D76 /* PhotoWheelViewCell.m in Sources */,
+				CE39D9FF156CC663003F8D76 /* SpinGestureRecongnizer.m in Sources */,
+				CE39DA00156CC663003F8D76 /* UIView+PWCategory.m in Sources */,
+				CE39DA01156CC663003F8D76 /* WheelView.m in Sources */,
+				CE39DA04156CD1EA003F8D76 /* PhotoBrowserPhotoView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

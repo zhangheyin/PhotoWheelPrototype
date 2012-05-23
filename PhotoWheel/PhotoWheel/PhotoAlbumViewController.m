@@ -10,9 +10,9 @@
 #import "PhotoAlbum.h" // 1
 #import "Photo.h" // 1
 #import "ImageGridViewCell.h"
+
 @interface PhotoAlbumViewController () // 2
-@property (nonatomic, strong) NSFetchedResultsController
-*fetchedResultsController;
+@property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, strong) PhotoAlbum *photoAlbum; // 3
 @property (nonatomic, strong) UIImagePickerController *imagePickerController; // 2
 @property (nonatomic, strong) UIPopoverController *imagePickerPopoverController; // 3
@@ -344,9 +344,90 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
 }
 - (void)gridView:(GridView *)gridView didSelectCellAtIndex:(NSInteger)index
 {
+    [self performSegueWithIdentifier:@"PushPhotoBrowser" sender:self];
 }
-@end
 
+
+//Listing 17.4 Preparing the Destination Controller
+#pragma mark - Segue
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    PhotoBrowserViewController *destinationViewController =
+    [segue destinationViewController];
+    [destinationViewController setDelegate:self];
+    NSInteger index = [[self gridView] indexForSelectedCell];
+    [destinationViewController setStartAtIndex:index];
+}
+#pragma mark - PhotoBrowserViewControllerDelegate methods
+- (NSInteger)photoBrowserViewControllerNumberOfPhotos:
+(PhotoBrowserViewController *)photoBrowser // 3
+{
+    NSInteger count = [[[[self fetchedResultsController] sections]
+                        objectAtIndex:0] numberOfObjects];
+    return count;
+}
+- (UIImage *)photoBrowserViewController:(PhotoBrowserViewController *)photoBrowser
+                           imageAtIndex:(NSInteger)index // 4
+{
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
+    Photo *photo = [[self fetchedResultsController] objectAtIndexPath:indexPath];
+    return [photo largeImage];
+}
+
+- (NSInteger)indexForSelectedGridCell
+{
+    GridView *gridView = [self gridView];
+    NSInteger selectedIndex = [gridView indexForSelectedCell];
+    NSInteger count = [[[[self fetchedResultsController] sections]
+                        objectAtIndex:0] numberOfObjects];
+    if (selectedIndex < 0 && count > 0) {
+        selectedIndex = 0;
+    }
+    return selectedIndex;
+}
+
+
+- (UIImage *)selectedImage
+{
+    UIImage *selectedImage = nil;
+    NSInteger selectedIndex = [self indexForSelectedGridCell];
+    if (selectedIndex >= 0) {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:selectedIndex
+                                                    inSection:0];
+        Photo *photo = [[self fetchedResultsController]
+                        objectAtIndexPath:indexPath];
+        selectedImage = [photo largeImage];
+    }
+    return selectedImage;
+}
+- (CGRect)selectedCellFrame
+{
+    CGRect rect;
+    GridView *gridView = [self gridView];
+    NSInteger selectedIndex = [self indexForSelectedGridCell];
+    if (selectedIndex >= 0) {
+        GridViewCell *cell = [gridView cellAtIndex:selectedIndex];
+        UIView *parentView = [[self parentViewController] view];
+        rect = [parentView convertRect:[cell frame] fromView:gridView];
+    } else {
+        CGRect gridFrame = [gridView frame];
+        rect = CGRectMake(CGRectGetMidX(gridFrame),
+                          CGRectGetMidY(gridFrame), 0, 0);
+    }
+    return rect;
+}
+
+- (void)photoBrowserViewController:(PhotoBrowserViewController *)photoBrowser
+                deleteImageAtIndex:(NSInteger)index
+{
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
+    Photo *photo = [[self fetchedResultsController] objectAtIndexPath:indexPath];
+    NSManagedObjectContext *context = [self managedObjectContext];
+    [context deleteObject:photo];
+    [self saveChanges];
+}
+
+@end
 
 
 

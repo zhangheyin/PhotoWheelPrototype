@@ -132,27 +132,62 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
+                            <view contentMode="scaleToFill" id="VCk-13-Pej" customClass="GridView">
+                                <rect key="frame" x="9" y="51" width="698" height="597"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="Lhp-uR-l9l" id="wNI-Rs-8ny"/>
+                                </connections>
+                            </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="stack-viewer-shadow.png" id="jme-Kg-BQT">
                                 <rect key="frame" x="9" y="51" width="698" height="8"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <view contentMode="scaleToFill" id="e5c-eW-Rkr" customClass="GridView">
-                                <rect key="frame" x="9" y="51" width="698" height="597"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="addButton" destination="58B-bL-eMQ" id="0cD-50-xcJ"/>
-                        <outlet property="gridView" destination="e5c-eW-Rkr" id="2sw-yG-DWw"/>
+                        <outlet property="gridView" destination="VCk-13-Pej" id="91D-I4-ahg"/>
                         <outlet property="textField" destination="Mfv-o7-F5E" id="EI2-GC-0ro"/>
                         <outlet property="toolbar" destination="jWi-Lz-srG" id="FI5-jf-sEi"/>
+                        <segue destination="Sb8-rc-PYR" kind="custom" identifier="PushPhotoBrowser" customClass="CustomPushSegue" id="e0n-j7-lJ2"/>
                     </connections>
                 </viewController>
             </objects>
             <point key="canvasLocation" x="719" y="649"/>
+        </scene>
+        <!--Photo Browser View Controller - Title-->
+        <scene sceneID="3lN-jK-2FG">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ulJ-nU-bEd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="Sb8-rc-PYR" customClass="PhotoBrowserViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Kiw-ZY-eqD">
+                        <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="TO8-mN-bM5">
+                                <rect key="frame" x="363" y="492" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="ZQK-8X-P8x">
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="1004"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Title" id="cAF-E1-foi"/>
+                    <connections>
+                        <outlet property="scrollView" destination="ZQK-8X-P8x" id="cPK-jF-DRB"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="1889" y="633"/>
         </scene>
         <!--Photo Albums View Controller-->
         <scene sceneID="gkN-mF-e2r">
@@ -265,6 +300,12 @@
             <relationships>
                 <relationship kind="action" name="addPhotoAlbum:"/>
                 <relationship kind="outlet" name="wheelView" candidateClass="WheelView"/>
+            </relationships>
+        </class>
+        <class className="PhotoBrowserViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PhotoBrowserViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
             </relationships>
         </class>
         <class className="WheelView" superclassName="UIView">

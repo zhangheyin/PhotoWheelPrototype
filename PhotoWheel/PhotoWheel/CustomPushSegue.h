@@ -2,8 +2,8 @@
 //  CustomPushSegue.h
 //  PhotoWheel
 //
-//  Created by Lion User on 12-5-22.
-//  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
+//  Created by Kirby Turner on 8/12/11.
+//  Copyright (c) 2011 White Peak Software Inc. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

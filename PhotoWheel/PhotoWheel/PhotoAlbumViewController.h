@@ -7,8 +7,9 @@
 //
 #import <UIKit/UIKit.h>
 #import "GridView.h"
+#import "PhotoBrowserViewController.h"
 @interface PhotoAlbumViewController : UIViewController <UIActionSheetDelegate,
-UIImagePickerControllerDelegate, UINavigationControllerDelegate, NSFetchedResultsControllerDelegate, GridViewDataSource>
+UIImagePickerControllerDelegate, UINavigationControllerDelegate, NSFetchedResultsControllerDelegate, GridViewDataSource,PhotoBrowserViewControllerDelegate>
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, strong) NSManagedObjectID *objectID;
 
@@ -23,4 +24,6 @@ UIImagePickerControllerDelegate, UINavigationControllerDelegate, NSFetchedResult
 
 - (IBAction)showActionMenu:(id)sender;
 - (IBAction)addPhoto:(id)sender;
+- (UIImage *)selectedImage;
+- (CGRect)selectedCellFrame;
 @end
