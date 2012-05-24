@@ -14,12 +14,13 @@
 #define ACTIONSHEET_TAG_ACTIONS 2
 
 @interface PhotoBrowserViewController ()
+@property (nonatomic, strong) SendEmailController *sendEmailController; // 3
 @property (nonatomic, assign) NSInteger currentIndex;
 @property (nonatomic, strong) NSMutableArray *photoViewCache;
 @property (nonatomic, strong) UIBarButtonItem *actionButton;
 @property (nonatomic, assign) NSInteger firstVisiblePageIndexBeforeRotation; // 1
 @property (nonatomic, assign) NSInteger percentScrolledIntoFirstVisiblePage; // 2
-
+- (void)emailCurrentPhoto; // 4
 - (void)initPhotoViewCache;
 - (void)setScrollViewContentSize;
 - (void)scrollToIndex:(NSInteger)index;
@@ -31,7 +32,7 @@
 @end
 
 @implementation PhotoBrowserViewController
-
+@synthesize sendEmailController = _sendEmailController; // 5
 @synthesize scrollView = _scrollView;
 @synthesize delegate = _delegate;
 @synthesize startAtIndex = _startAtIndex;
@@ -436,34 +437,15 @@
     [actionSheet showFromBarButtonItem:sender animated:YES];
 }
 
-- (void)showActionMenu:(id)sender
-{
-    NSLog(@"%s", __PRETTY_FUNCTION__);
-}
+
 
 - (void)slideshow:(id)sender
 {
     NSLog(@"%s", __PRETTY_FUNCTION__);
 }
 
-#pragma mark - UIActionSheetDelegate methods
 
-- (void)actionSheet:(UIActionSheet *)actionSheet 
-clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    [self startChromeDisplayTimer];
-    
-    // Do nothing if the user taps outside the action 
-    // sheet (thus closing the popover containing the
-    // action sheet).
-    if (buttonIndex < 0) {
-        return;
-    }
-    
-    if ([actionSheet tag] == ACTIONSHEET_TAG_DELETE) {
-        [self deletePhotoConfirmed];
-    }
-}
+
 
 #pragma mark - Rotation support
 /**
@@ -543,5 +525,101 @@ clickedButtonAtIndex:(NSInteger)buttonIndex
 }
 
 
+- (void)showActionMenu:(id)sender
+{
+    [self cancelChromeDisplayTimer];
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] init];
+    [actionSheet setDelegate:self];
+    [actionSheet setTag:ACTIONSHEET_TAG_ACTIONS];
+    if ([SendEmailController canSendMail]) { // 6
+        [actionSheet addButtonWithTitle:@"Email"];
+    }
+    if ([UIPrintInteractionController isPrintingAvailable]) {
+        [actionSheet addButtonWithTitle:@"Print"];
+    }
+    [actionSheet showFromBarButtonItem:sender animated:YES];
+}
+// Other code left out for brevity's sake.
+#pragma mark - UIActionSheetDelegate methods
+- (void)actionSheet:(UIActionSheet *)actionSheet
+clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    [self startChromeDisplayTimer];
+    // Do nothing if the user taps outside the action
+    // sheet (thus closing the popover containing the
+    // action sheet).
+    if (buttonIndex < 0) {
+        return;
+    }
+    if ([actionSheet tag] == ACTIONSHEET_TAG_DELETE) {
+        [self deletePhotoConfirmed];
+    } else if ([actionSheet tag] == ACTIONSHEET_TAG_ACTIONS) {
+        // Button index 0 can be Email or Print. It depends on whether or
+        // not the device supports that feature.
+        if (buttonIndex == 0) { // 7
+            if ([SendEmailController canSendMail]) {
+                [self emailCurrentPhoto];
+            } else if ([UIPrintInteractionController isPrintingAvailable]) {
+                [self printCurrentPhoto];
+            }
+        } else {
+            // If there is a button index 1, it
+            // will also be Print.
+            [self printCurrentPhoto];
+        }
+    }
+}
 
+#pragma mark - Printing
+- (void)printCurrentPhoto
+{
+    [self cancelChromeDisplayTimer]; // 2
+    UIImage *currentPhoto = [self imageAtIndex:[self currentIndex]]; // 3
+    UIPrintInteractionController *controller =
+    [UIPrintInteractionController sharedPrintController]; // 4
+    if(!controller){
+        NSLog(@"Couldn't get shared UIPrintInteractionController!");
+        return;
+    }
+    UIPrintInteractionCompletionHandler completionHandler =
+    ^(UIPrintInteractionController *printController, BOOL completed,
+      NSError *error)
+    {
+        [self startChromeDisplayTimer];
+        
+        
+        if(completed && error)
+            NSLog(@"FAILED! due to error in domain %@ with error code %u",
+                  error.domain, error.code);
+    }; // 5
+    UIPrintInfo *printInfo = [UIPrintInfo printInfo]; // 6
+    [printInfo setOutputType:UIPrintInfoOutputPhoto]; // 7
+    [printInfo setJobName:[NSString stringWithFormat:@"photo-%i",
+                           [self currentIndex]]]; // 8
+    [controller setPrintInfo:printInfo]; // 9
+    [controller setPrintingItem:currentPhoto]; // 10
+    [controller presentFromBarButtonItem:[self actionButton]
+                                animated:YES
+                       completionHandler:completionHandler]; // 11
+}
+
+
+#pragma mark - Email and SendEmailControllerDelegate methods
+- (void)emailCurrentPhoto // 8
+{
+    UIImage *currentPhoto = [self imageAtIndex:[self currentIndex]];
+    NSSet *photos = [NSSet setWithObject:currentPhoto];
+    SendEmailController *controller = [[SendEmailController alloc]
+                                       initWithViewController:self];
+    [controller setPhotos:photos];
+    [controller sendEmail];
+    [self setSendEmailController:controller];
+}
+- (void)sendEmailControllerDidFinish:(SendEmailController *)controller // 9
+{
+    if ([controller isEqual:[self sendEmailController]]) {
+        [self setSendEmailController:nil];
+    }
+}
 @end
+

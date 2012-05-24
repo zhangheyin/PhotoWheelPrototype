@@ -12,15 +12,18 @@
 #import "ImageGridViewCell.h"
 
 @interface PhotoAlbumViewController ()
+@property (nonatomic, strong) SendEmailController *sendEmailController;
 @property (nonatomic, strong) PhotoAlbum *photoAlbum;
 @property (nonatomic, strong) UIImagePickerController *imagePickerController;
 @property (nonatomic, strong) UIPopoverController *imagePickerPopoverController;
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 - (void)presentPhotoPickerMenu;
+
+- (void)emailPhotos;
 @end
 
 @implementation PhotoAlbumViewController
-
+@synthesize sendEmailController = _sendEmailController;
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize objectID = _objectID;
 @synthesize toolbar = _toolbar;
@@ -138,10 +141,13 @@
 
 #pragma mark Actions
 
-- (IBAction)showActionMenu:(id)sender 
+- (IBAction)showActionMenu:(id)sender
 {
     UIActionSheet *actionSheet = [[UIActionSheet alloc] init];
     [actionSheet setDelegate:self];
+    if ([SendEmailController canSendMail]) {
+        [actionSheet addButtonWithTitle:@"Email Photo Album"];
+    }
     [actionSheet addButtonWithTitle:@"Delete Photo Album"];
     [actionSheet showFromBarButtonItem:sender animated:YES];
 }
@@ -192,29 +198,25 @@ clickedButtonAtIndex:(NSInteger)buttonIndex
 }
 
 #pragma mark - UIActionSheetDelegate methods
-
-- (void)actionSheet:(UIActionSheet *)actionSheet 
+- (void)actionSheet:(UIActionSheet *)actionSheet
 clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    // Do nothing if the user taps outside the action 
+    // Do nothing if the user taps outside the action
     // sheet (thus closing the popover containing the
     // action sheet).
     if (buttonIndex < 0) {
         return;
     }
-    
     NSMutableArray *names = [[NSMutableArray alloc] init];
-    
     if ([actionSheet tag] == 0) {
+        if ([SendEmailController canSendMail]) [names addObject:@"emailPhotos"];
         [names addObject:@"confirmDeletePhotoAlbum"];
-        
     } else {
-        BOOL hasCamera = [UIImagePickerController 
+        BOOL hasCamera = [UIImagePickerController
                           isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
         if (hasCamera) [names addObject:@"presentCamera"];
         [names addObject:@"presentPhotoLibrary"];
     }
-    
     SEL selector = NSSelectorFromString([names objectAtIndex:buttonIndex]);
     [self performSelector:selector];
 }
@@ -498,5 +500,22 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
         [self layoutForPortrait];
     }
 }
-
+#pragma mark - Email and SendEmailControllerDelegate methods
+- (void)emailPhotos
+{
+    NSManagedObjectContext *context = [self managedObjectContext];
+    PhotoAlbum *album = (PhotoAlbum *)[context objectWithID:[self objectID]];
+    NSSet *photos = [[album photos] set];
+    SendEmailController *controller = [[SendEmailController alloc]
+                                       initWithViewController:self];
+    [controller setPhotos:photos];
+    [controller sendEmail];
+    [self setSendEmailController:controller];
+}
+- (void)sendEmailControllerDidFinish:(SendEmailController *)controller
+{
+    if ([controller isEqual:[self sendEmailController]]) {
+        [self setSendEmailController:nil];
+    }
+}
 @end

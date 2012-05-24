@@ -9,7 +9,7 @@
 #import "GridView.h"
 #import "PhotoBrowserViewController.h"
 @interface PhotoAlbumViewController : UIViewController <UIActionSheetDelegate,
-UIImagePickerControllerDelegate, UINavigationControllerDelegate, NSFetchedResultsControllerDelegate, GridViewDataSource,PhotoBrowserViewControllerDelegate>
+UIImagePickerControllerDelegate, UINavigationControllerDelegate, NSFetchedResultsControllerDelegate, GridViewDataSource,PhotoBrowserViewControllerDelegate, SendEmailControllerDelegate>
 @property (nonatomic, strong) IBOutlet UIImageView *backgroundImageView;
 @property (nonatomic, strong) IBOutlet UIImageView *shadowImageView;
 

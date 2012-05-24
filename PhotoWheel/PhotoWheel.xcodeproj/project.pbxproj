@@ -59,6 +59,8 @@
 		CE39DA00156CC663003F8D76 /* UIView+PWCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = CE39D9EB156CC662003F8D76 /* UIView+PWCategory.m */; };
 		CE39DA01156CC663003F8D76 /* WheelView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE39D9ED156CC662003F8D76 /* WheelView.m */; };
 		CE39DA04156CD1EA003F8D76 /* PhotoBrowserPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE39DA03156CD1EA003F8D76 /* PhotoBrowserPhotoView.m */; };
+		CEE77D7E156E060100822CDE /* SendEmailController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE77D7D156E060100822CDE /* SendEmailController.m */; };
+		CEE77D81156E065800822CDE /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEE77D80156E065800822CDE /* MessageUI.framework */; };
 		CEFCCA49156BD4D400B2B75B /* PhotoWheelViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEFCCA48156BD4D400B2B75B /* PhotoWheelViewCell.xib */; };
 		CEFCCA66156BE8C500B2B75B /* PhotoWheel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CEFCCA64156BE8C500B2B75B /* PhotoWheel.xcdatamodeld */; };
 /* End PBXBuildFile section */
@@ -139,6 +141,9 @@
 		CE39D9ED156CC662003F8D76 /* WheelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WheelView.m; sourceTree = "<group>"; };
 		CE39DA02156CD1EA003F8D76 /* PhotoBrowserPhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoBrowserPhotoView.h; sourceTree = "<group>"; };
 		CE39DA03156CD1EA003F8D76 /* PhotoBrowserPhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoBrowserPhotoView.m; sourceTree = "<group>"; };
+		CEE77D7C156E060100822CDE /* SendEmailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendEmailController.h; sourceTree = "<group>"; };
+		CEE77D7D156E060100822CDE /* SendEmailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendEmailController.m; sourceTree = "<group>"; };
+		CEE77D80156E065800822CDE /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		CEFCCA48156BD4D400B2B75B /* PhotoWheelViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoWheelViewCell.xib; sourceTree = "<group>"; };
 		CEFCCA65156BE8C500B2B75B /* PhotoWheel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PhotoWheel.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -148,6 +153,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEE77D81156E065800822CDE /* MessageUI.framework in Frameworks */,
 				CE25A10E156B262700468A99 /* QuartzCore.framework in Frameworks */,
 				CE25A0A5156A544F00468A99 /* UIKit.framework in Frameworks */,
 				CE25A0A7156A544F00468A99 /* Foundation.framework in Frameworks */,
@@ -179,6 +185,7 @@
 		CE25A0A3156A544F00468A99 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CEE77D80156E065800822CDE /* MessageUI.framework */,
 				CE25A10D156B262700468A99 /* QuartzCore.framework */,
 				CE25A0A4156A544F00468A99 /* UIKit.framework */,
 				CE25A0A6156A544F00468A99 /* Foundation.framework */,
@@ -191,6 +198,8 @@
 		CE25A0AC156A544F00468A99 /* PhotoWheel */ = {
 			isa = PBXGroup;
 			children = (
+				CEE77D7C156E060100822CDE /* SendEmailController.h */,
+				CEE77D7D156E060100822CDE /* SendEmailController.m */,
 				CE39DA02156CD1EA003F8D76 /* PhotoBrowserPhotoView.h */,
 				CE39DA03156CD1EA003F8D76 /* PhotoBrowserPhotoView.m */,
 				CE39D9C7156CC65E003F8D76 /* _Photo.h */,
@@ -391,6 +400,7 @@
 				CE39DA00156CC663003F8D76 /* UIView+PWCategory.m in Sources */,
 				CE39DA01156CC663003F8D76 /* WheelView.m in Sources */,
 				CE39DA04156CD1EA003F8D76 /* PhotoBrowserPhotoView.m in Sources */,
+				CEE77D7E156E060100822CDE /* SendEmailController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
