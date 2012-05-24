@@ -10,7 +10,7 @@
 #import "PhotoAlbum.h"
 #import "Photo.h"
 #import "ImageGridViewCell.h"
-
+#import "FlickrViewController.h" // 1
 @interface PhotoAlbumViewController ()
 @property (nonatomic, strong) SendEmailController *sendEmailController;
 @property (nonatomic, strong) PhotoAlbum *photoAlbum;
@@ -196,6 +196,45 @@ clickedButtonAtIndex:(NSInteger)buttonIndex
         [self reload];
     }
 }
+- (void)presentFlickr // 3
+{
+    [self performSegueWithIdentifier:@"PushFlickrScene" sender:self];
+}
+- (void)presentPhotoPickerMenu
+{
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] init];
+    [actionSheet setDelegate:self];
+    BOOL hasCamera = [UIImagePickerController
+                      isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
+    if (hasCamera) {
+        [actionSheet addButtonWithTitle:@"Take Photo"];
+    }
+    [actionSheet addButtonWithTitle:@"Choose from Library"];
+    [actionSheet addButtonWithTitle:@"Choose from Flickr"]; // 4
+    [actionSheet setTag:1];
+    [actionSheet showFromBarButtonItem:[self addButton] animated:YES];
+}
+// Other code left out for brevity's sake.
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender // 5
+{
+    if ([[segue destinationViewController]
+         isKindOfClass:[PhotoBrowserViewController class]])
+    {
+        PhotoBrowserViewController *destinationViewController =
+        [segue destinationViewController];
+        [destinationViewController setDelegate:self];
+        NSInteger index = [[self gridView] indexForSelectedCell];
+        [destinationViewController setStartAtIndex:index];
+    } else if ([[segue destinationViewController]
+                isKindOfClass:[FlickrViewController class]])
+    {
+        [[segue destinationViewController]
+         setManagedObjectContext:[self managedObjectContext]];
+        [[segue destinationViewController] setObjectID:[self objectID]];
+    }
+}
+// Other code left out for brevity's sake.
+
 
 #pragma mark - UIActionSheetDelegate methods
 - (void)actionSheet:(UIActionSheet *)actionSheet
@@ -216,6 +255,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex
                           isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
         if (hasCamera) [names addObject:@"presentCamera"];
         [names addObject:@"presentPhotoLibrary"];
+        [names addObject:@"presentFlickr"]; // 2
     }
     SEL selector = NSSelectorFromString([names objectAtIndex:buttonIndex]);
     [self performSelector:selector];
@@ -245,19 +285,6 @@ clickedButtonAtIndex:(NSInteger)buttonIndex
     [self setImagePickerPopoverController:newPopoverController];
 }
 
-- (void)presentPhotoPickerMenu
-{
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] init];
-    [actionSheet setDelegate:self];
-    BOOL hasCamera = [UIImagePickerController 
-                      isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
-    if (hasCamera) {
-        [actionSheet addButtonWithTitle:@"Take Photo"];
-    }
-    [actionSheet addButtonWithTitle:@"Choose from Library"];
-    [actionSheet setTag:1];
-    [actionSheet showFromBarButtonItem:[self addButton] animated:YES];
-}
 
 #pragma mark - UIImagePickerControllerDelegate methods
 
@@ -380,17 +407,6 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
 - (void)gridView:(GridView *)gridView didSelectCellAtIndex:(NSInteger)index
 {
     [self performSegueWithIdentifier:@"PushPhotoBrowser" sender:self];
-}
-
-#pragma mark - Segue
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    PhotoBrowserViewController *destinationViewController = 
-    [segue destinationViewController];
-    [destinationViewController setDelegate:self];
-    NSInteger index = [[self gridView] indexForSelectedCell];
-    [destinationViewController setStartAtIndex:index];
 }
 
 #pragma mark - PhotoBrowserViewControllerDelegate methods
