@@ -10,6 +10,9 @@
 #import "PhotoBrowserViewController.h"
 @interface PhotoAlbumViewController : UIViewController <UIActionSheetDelegate,
 UIImagePickerControllerDelegate, UINavigationControllerDelegate, NSFetchedResultsControllerDelegate, GridViewDataSource,PhotoBrowserViewControllerDelegate>
+@property (nonatomic, strong) IBOutlet UIImageView *backgroundImageView;
+@property (nonatomic, strong) IBOutlet UIImageView *shadowImageView;
+
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, strong) NSManagedObjectID *objectID;
 

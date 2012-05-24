@@ -17,6 +17,7 @@ typedef enum {
 
 
 @interface WheelView : UIView
+@property (nonatomic, assign) CGFloat angleOffset;
 @property (nonatomic, strong) IBOutlet id<WheelViewDataSource> dataSource;
 @property (nonatomic, strong) IBOutlet id<WheelViewDelegate> delegate;
 @property (nonatomic, assign) WheelViewStyle style;

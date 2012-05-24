@@ -28,8 +28,8 @@
 		CE25A0E6156A59B700468A99 /* IconSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = CE25A0CE156A59B700468A99 /* IconSmall.png */; };
 		CE25A0E7156A59B700468A99 /* IconSmall@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE25A0CF156A59B700468A99 /* IconSmall@2x.png */; };
 		CE25A0E8156A59B700468A99 /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = CE25A0D0156A59B700468A99 /* iTunesArtwork */; };
-		CE25A0E9156A59B700468A99 /* PWDefault-landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = CE25A0D1156A59B700468A99 /* PWDefault-landscape.png */; };
-		CE25A0EA156A59B700468A99 /* PWDefault.png in Resources */ = {isa = PBXBuildFile; fileRef = CE25A0D2156A59B700468A99 /* PWDefault.png */; };
+		CE25A0E9156A59B700468A99 /* Default-landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = CE25A0D1156A59B700468A99 /* Default-landscape.png */; };
+		CE25A0EA156A59B700468A99 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = CE25A0D2156A59B700468A99 /* Default.png */; };
 		CE25A0EB156A59B700468A99 /* stack-add-down.png in Resources */ = {isa = PBXBuildFile; fileRef = CE25A0D3156A59B700468A99 /* stack-add-down.png */; };
 		CE25A0EC156A59B700468A99 /* stack-add.png in Resources */ = {isa = PBXBuildFile; fileRef = CE25A0D4156A59B700468A99 /* stack-add.png */; };
 		CE25A0ED156A59B700468A99 /* stack-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = CE25A0D5156A59B700468A99 /* stack-bg.png */; };
@@ -88,8 +88,8 @@
 		CE25A0CE156A59B700468A99 /* IconSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IconSmall.png; sourceTree = "<group>"; };
 		CE25A0CF156A59B700468A99 /* IconSmall@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "IconSmall@2x.png"; sourceTree = "<group>"; };
 		CE25A0D0156A59B700468A99 /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
-		CE25A0D1156A59B700468A99 /* PWDefault-landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PWDefault-landscape.png"; sourceTree = "<group>"; };
-		CE25A0D2156A59B700468A99 /* PWDefault.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PWDefault.png; sourceTree = "<group>"; };
+		CE25A0D1156A59B700468A99 /* Default-landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-landscape.png"; sourceTree = "<group>"; };
+		CE25A0D2156A59B700468A99 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		CE25A0D3156A59B700468A99 /* stack-add-down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "stack-add-down.png"; sourceTree = "<group>"; };
 		CE25A0D4156A59B700468A99 /* stack-add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "stack-add.png"; sourceTree = "<group>"; };
 		CE25A0D5156A59B700468A99 /* stack-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "stack-bg.png"; sourceTree = "<group>"; };
@@ -268,8 +268,8 @@
 				CE25A0CE156A59B700468A99 /* IconSmall.png */,
 				CE25A0CF156A59B700468A99 /* IconSmall@2x.png */,
 				CE25A0D0156A59B700468A99 /* iTunesArtwork */,
-				CE25A0D1156A59B700468A99 /* PWDefault-landscape.png */,
-				CE25A0D2156A59B700468A99 /* PWDefault.png */,
+				CE25A0D1156A59B700468A99 /* Default-landscape.png */,
+				CE25A0D2156A59B700468A99 /* Default.png */,
 				CE25A0D3156A59B700468A99 /* stack-add-down.png */,
 				CE25A0D4156A59B700468A99 /* stack-add.png */,
 				CE25A0D5156A59B700468A99 /* stack-bg.png */,
@@ -348,8 +348,8 @@
 				CE25A0E6156A59B700468A99 /* IconSmall.png in Resources */,
 				CE25A0E7156A59B700468A99 /* IconSmall@2x.png in Resources */,
 				CE25A0E8156A59B700468A99 /* iTunesArtwork in Resources */,
-				CE25A0E9156A59B700468A99 /* PWDefault-landscape.png in Resources */,
-				CE25A0EA156A59B700468A99 /* PWDefault.png in Resources */,
+				CE25A0E9156A59B700468A99 /* Default-landscape.png in Resources */,
+				CE25A0EA156A59B700468A99 /* Default.png in Resources */,
 				CE25A0EB156A59B700468A99 /* stack-add-down.png in Resources */,
 				CE25A0EC156A59B700468A99 /* stack-add.png in Resources */,
 				CE25A0ED156A59B700468A99 /* stack-bg.png in Resources */,

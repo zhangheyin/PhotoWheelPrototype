@@ -38,6 +38,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="xES-Qi-aFP"/>
+                    <connections>
+                        <outlet property="backgroundImageView" destination="KhO-bH-mBN" id="1ZZ-fV-Nam"/>
+                        <outlet property="infoButton" destination="oE1-pM-tqF" id="3aS-O0-Jy2"/>
+                    </connections>
                 </viewController>
             </objects>
             <point key="canvasLocation" x="877" y="-546"/>
@@ -149,7 +153,9 @@
                     </view>
                     <connections>
                         <outlet property="addButton" destination="58B-bL-eMQ" id="0cD-50-xcJ"/>
+                        <outlet property="backgroundImageView" destination="MEy-RB-Rrj" id="2oR-kM-2DA"/>
                         <outlet property="gridView" destination="VCk-13-Pej" id="91D-I4-ahg"/>
+                        <outlet property="shadowImageView" destination="jme-Kg-BQT" id="VaK-5t-pTd"/>
                         <outlet property="textField" destination="Mfv-o7-F5E" id="EI2-GC-0ro"/>
                         <outlet property="toolbar" destination="jWi-Lz-srG" id="FI5-jf-sEi"/>
                         <segue destination="Sb8-rc-PYR" kind="custom" identifier="PushPhotoBrowser" customClass="CustomPushSegue" id="e0n-j7-lJ2"/>
@@ -283,6 +289,10 @@
         </class>
         <class className="MainViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MainViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="backgroundImageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="infoButton" candidateClass="UIButton"/>
+            </relationships>
         </class>
         <class className="PhotoAlbumViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PhotoAlbumViewController.h"/>
@@ -290,7 +300,9 @@
                 <relationship kind="action" name="addPhoto:"/>
                 <relationship kind="action" name="showActionMenu:"/>
                 <relationship kind="outlet" name="addButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="backgroundImageView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="gridView" candidateClass="GridView"/>
+                <relationship kind="outlet" name="shadowImageView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="textField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="toolbar" candidateClass="UIToolbar"/>
             </relationships>

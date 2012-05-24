@@ -31,6 +31,8 @@
 		<string>IconSmall-50x50.png</string>
 		<string>IconSmall.png</string>
 	</array>
+	<key>UILaunchImageFile</key>
+	<string>Default.png</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIRequiredDeviceCapabilities</key>

@@ -2,57 +2,113 @@
 //  MainViewController.m
 //  PhotoWheel
 //
-//  Created by Lion User on 12-5-22.
-//  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
+//  Created by Kirby Turner on 8/13/11.
+//  Copyright (c) 2011 White Peak Software Inc. All rights reserved.
 //
 
 #import "MainViewController.h"
 #import "PhotoAlbumViewController.h"
 #import "PhotoAlbumsViewController.h"
 #import "AppDelegate.h"
+
 @implementation MainViewController
-- (void)viewDidLoad
+
+@synthesize backgroundImageView = _backgroundImageView;           // 1
+@synthesize infoButton = _infoButton;                             // 2
+@synthesize skipRotation = _skipRotation;
+
+- (void)viewDidLoad                                               // 3
 {
     [super viewDidLoad];
-    AppDelegate *appDelegate =
-    (AppDelegate *)[[UIApplication sharedApplication] delegate]; // 1
-    NSManagedObjectContext *managedObjectContext =
-    [appDelegate managedObjectContext]; // 2
+    
+    AppDelegate *appDelegate = 
+    (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext *managedObjectContext = 
+    [appDelegate managedObjectContext];
+    
     UIStoryboard *storyboard = [self storyboard];
-    PhotoAlbumsViewController *photoAlbumsScene =
+    
+    PhotoAlbumsViewController *photoAlbumsScene = 
     [storyboard instantiateViewControllerWithIdentifier:@"PhotoAlbumsScene"];
-    [photoAlbumsScene setManagedObjectContext:managedObjectContext]; // 3
+    [photoAlbumsScene setManagedObjectContext:managedObjectContext];
     [self addChildViewController:photoAlbumsScene];
     [photoAlbumsScene didMoveToParentViewController:self];
-    PhotoAlbumViewController *photoAlbumScene =
+    
+    PhotoAlbumViewController *photoAlbumScene = 
     [storyboard instantiateViewControllerWithIdentifier:@"PhotoAlbumScene"];
     [self addChildViewController:photoAlbumScene];
     [photoAlbumScene didMoveToParentViewController:self];
     
     [photoAlbumsScene setPhotoAlbumViewController:photoAlbumScene];
+    [self setSkipRotation:YES];
 }
 
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (void)viewWillAppear:(BOOL)animated
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
+    [super viewWillAppear:animated];
+    
+    if ([self skipRotation] == NO) {
+        UIInterfaceOrientation interfaceOrientation = [self interfaceOrientation];
+        NSTimeInterval interval = 0.35;
+        
+        void (^animation)() = ^ {
+            [self willAnimateRotationToInterfaceOrientation:interfaceOrientation duration:interval];
+            for (UIViewController *childController in [self childViewControllers]) {
+                [childController willAnimateRotationToInterfaceOrientation:interfaceOrientation duration:interval];
+            }
+        };
+        
+        [UIView animateWithDuration:interval animations:animation];
     }
-    return self;
+    [self setSkipRotation:NO];
 }
 
-
-
-- (void)viewDidUnload
+- (void)viewDidUnload                                             // 4
 {
+    [self setBackgroundImageView:nil];
+    [self setInfoButton:nil];
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+#pragma mark - Rotation support
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:
+(UIInterfaceOrientation)toInterfaceOrientation                    // 5
 {
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    return YES;
+}
+
+- (void)layoutForLandscape                                        // 6
+{
+    UIImage *backgroundImage = [UIImage 
+                                imageNamed:@"background-landscape-right-grooved.png"];
+    [[self backgroundImageView] setImage:backgroundImage];
+    
+    CGRect frame = [[self infoButton] frame];
+    frame.origin = CGPointMake(981, 712);
+    [[self infoButton] setFrame:frame];
+}
+
+- (void)layoutForPortrait                                         // 7
+{
+    UIImage *backgroundImage = [UIImage 
+                                imageNamed:@"background-portrait-grooved.png"]; 
+    [[self backgroundImageView] setImage:backgroundImage];
+    
+    CGRect frame = [[self infoButton] frame];
+    frame.origin = CGPointMake(723, 960);
+    [[self infoButton] setFrame:frame];
+}
+
+- (void)willAnimateRotationToInterfaceOrientation:
+(UIInterfaceOrientation)toInterfaceOrientation 
+                                         duration:(NSTimeInterval)duration                                // 8
+{
+    if (UIInterfaceOrientationIsLandscape(toInterfaceOrientation)) {
+        [self layoutForLandscape];
+    } else {
+        [self layoutForPortrait];
+    }
 }
 
 @end
