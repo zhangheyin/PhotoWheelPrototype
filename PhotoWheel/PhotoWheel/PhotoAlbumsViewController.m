@@ -34,10 +34,9 @@ NSFetchedResultsController *fetchedResultsController;                 // 3
     [[self view] setBackgroundColor:[UIColor clearColor]];
 }
 
-- (void)viewDidUnload                                                   // 6
-{
-    [self setWheelView:nil];
-    [super viewDidUnload];
+- (void)viewDidUnload {
+    [super viewDidUnload]; [[NSNotificationCenter defaultCenter]
+                            removeObserver:self name:kRefetchAllDataNotification object:nil];
 }
 
 - (void)willAnimateRotationToInterfaceOrientation:
@@ -55,7 +54,9 @@ NSFetchedResultsController *fetchedResultsController;                 // 3
     [[self view] setFrame:newFrame];
     [[self wheelView] setAngleOffset:angleOffset];
 }
-
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kRefetchAllDataNotification object:nil];
+}
 #pragma mark - Actions
 
 - (IBAction)addPhotoAlbum:(id)sender                                    // 7

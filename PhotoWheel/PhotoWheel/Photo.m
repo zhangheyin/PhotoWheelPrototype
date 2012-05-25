@@ -74,57 +74,120 @@
    return newImage;
 }
 
+- (void)createScaledImagesForImage:(UIImage *)originalImage
+{
+    // Save thumbnail
+    CGSize thumbnailSize = CGSizeMake(75.0, 75.0);
+    UIImage *thumbnailImage = [self image:originalImage scaleAndCropToMaxSize:thumbnailSize];
+    NSData *thumbnailImageData = UIImageJPEGRepresentation(thumbnailImage, 0.8);
+    [self setThumbnailImageData:thumbnailImageData];
+    
+    // Save small image
+    CGSize smallSize = CGSizeMake(100.0, 100.0);
+    UIImage *smallImage = [self image:originalImage scaleAndCropToMaxSize:smallSize];
+    NSData *smallImageData = UIImageJPEGRepresentation(smallImage, 0.8);
+    [self setSmallImageData:smallImageData];
+    
+    // Save large (screen-size) image
+    CGRect screenBounds = [[UIScreen mainScreen] bounds];
+    // Calculate size for retina displays
+    CGFloat scale = [[UIScreen mainScreen] scale];
+    CGFloat maxScreenSize = MAX(screenBounds.size.width, screenBounds.size.height) * scale;
+    
+    CGSize imageSize = [originalImage size];
+    CGFloat maxImageSize = MAX(imageSize.width, imageSize.height) * scale;
+    
+    CGFloat maxSize = MIN(maxScreenSize, maxImageSize);
+    UIImage *largeImage = [self image:originalImage scaleAspectToMaxSize:maxSize];
+    NSData *largeImageData = UIImageJPEGRepresentation(largeImage, 0.8);
+    [self setLargeImageData:largeImageData];
+}
+
 - (void)saveImage:(UIImage *)newImage;
 {
-   NSData *originalImageData = UIImageJPEGRepresentation(newImage, 0.8);
-   [self setOriginalImageData:originalImageData];
-   // Save thumbnail
-   CGSize thumbnailSize = CGSizeMake(75.0, 75.0);
-   UIImage *thumbnailImage = [self image:newImage 
-                   scaleAndCropToMaxSize:thumbnailSize];
-   NSData *thumbnailImageData = UIImageJPEGRepresentation(thumbnailImage, 0.8);
-   [self setThumbnailImageData:thumbnailImageData];
-   
-   // Save small image
-   CGSize smallSize = CGSizeMake(100.0, 100.0);
-   UIImage *smallImage = [self image:newImage scaleAndCropToMaxSize:smallSize];
-   NSData *smallImageData = UIImageJPEGRepresentation(smallImage, 0.8);
-   [self setSmallImageData:smallImageData];
-   
-   // Save large (screen-size) image
-   CGRect screenBounds = [[UIScreen mainScreen] bounds];
-   // Calculate size for retina displays
-   CGFloat scale = [[UIScreen mainScreen] scale]; 
-   CGFloat maxScreenSize = MAX(screenBounds.size.width,
-                               screenBounds.size.height) * scale;
-   
-   CGSize imageSize = [newImage size];
-   CGFloat maxImageSize = MAX(imageSize.width, imageSize.height) * scale;
-   
-   CGFloat maxSize = MIN(maxScreenSize, maxImageSize);
-   UIImage *largeImage = [self image:newImage scaleAspectToMaxSize:maxSize];
-   NSData *largeImageData = UIImageJPEGRepresentation(largeImage, 0.8);
-   [self setLargeImageData:largeImageData];
+    NSData *originalImageData = UIImageJPEGRepresentation(newImage, 0.8);
+    [self setOriginalImageData:originalImageData];
+    [self createScaledImagesForImage:newImage];
+}
+- (NSURL *)fileURLForAttributeNamed:(NSString *)attributeName
+{
+    if ([[self objectID] isTemporaryID]) {
+        NSError *error = nil;
+        [[self managedObjectContext]
+         obtainPermanentIDsForObjects:[NSArray arrayWithObject:self]
+         error:&error];
+    }
+    NSUInteger filenameID = [[[[self objectID] URIRepresentation]
+                              absoluteURL] hash];
+    NSString *filename = [NSString stringWithFormat:@"%@-%ld",
+                          attributeName, filenameID];
+    NSURL *documentsDirectory = [[[NSFileManager defaultManager]
+                                  URLsForDirectory:NSDocumentDirectory
+                                  inDomains:NSUserDomainMask]
+                                 lastObject];
+    return [documentsDirectory URLByAppendingPathComponent:filename];
 }
 
-- (UIImage *)originalImage;
+- (void)setImageData:(NSData *)imageData forAttributeNamed:(NSString *)attributeName
 {
-   return [UIImage imageWithData:[self originalImageData]];
+    // Do the set
+    [self willChangeValueForKey:attributeName];
+    [self setPrimitiveValue:imageData forKey:attributeName];
+    [self didChangeValueForKey:attributeName];
+    // Now write to a file, since the attribute is transient.
+    [imageData writeToURL:[self fileURLForAttributeNamed:attributeName] atomically:YES];
+}
+- (void)setLargeImageData:(NSData *)largeImageData
+{
+    [self setImageData:largeImageData forAttributeNamed:@"largeImageData"];
+}
+- (void)setSmallImageData:(NSData *)smallImageData
+{
+    [self setImageData:smallImageData forAttributeNamed:@"smallImageData"];
+}
+- (void)setThumbnailImageData:(NSData *)thumbnailImageData
+{
+    [self setImageData:thumbnailImageData forAttributeNamed:@"thumbnailImageData"];
 }
 
-- (UIImage *)largeImage;
+
+- (NSData *)imageDataForAttributeNamed:(NSString *)attributeName
 {
-   return [UIImage imageWithData:[self largeImageData]];
+    // Get the existing data for the attribute, if possible.
+    [self willAccessValueForKey:attributeName];
+    NSData *imageData = [self primitiveValueForKey:attributeName];
+    [self didAccessValueForKey:attributeName];
+    // If we don't already have image data, get it.
+    if (imageData == nil) {
+        NSURL *fileURL = [self fileURLForAttributeNamed:attributeName];
+        if ([[NSFileManager defaultManager] fileExistsAtPath:[fileURL path]]) {
+            // Read image data from the appropriate file, if it exists.
+            imageData = [NSData dataWithContentsOfURL:fileURL];
+            [self willChangeValueForKey:attributeName];
+            [self setPrimitiveValue:imageData forKey:attributeName];
+            [self didChangeValueForKey:attributeName];
+        } else {
+            // If the file doesn't exist, create it.
+            [self createScaledImagesForImage:[self originalImage]];
+            [self willAccessValueForKey:attributeName];
+            imageData = [self primitiveValueForKey:attributeName];
+            [self didAccessValueForKey:attributeName];
+        }
+    }
+    return imageData;
+}
+- (NSData *)largeImageData
+{
+    return [self imageDataForAttributeNamed:@"largeImageData"];
+}
+- (NSData *)smallImageData
+{
+    return [self imageDataForAttributeNamed:@"smallImageData"];
+}
+- (NSData *)thumbnailImageData
+{
+    return [self imageDataForAttributeNamed:@"thumbnailImageData"];
 }
 
-- (UIImage *)thumbnailImage;
-{
-   return [UIImage imageWithData:[self thumbnailImageData]];
-}
-
-- (UIImage *)smallImage
-{
-   return [UIImage imageWithData:[self smallImageData]];
-}
 
 @end

@@ -16,5 +16,5 @@
 - (UIImage *)largeImage;
 - (UIImage *)thumbnailImage;
 - (UIImage *)smallImage;
-
+- (void)createScaledImagesForImage:(UIImage *)originalImage;
 @end
